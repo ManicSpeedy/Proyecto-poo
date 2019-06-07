@@ -3,54 +3,23 @@
 using namespace std;
 
 class persona{
-private:
-char nombre[20];
-int codigo;
-public:
-void getnom();
-void setnom();
-void getcod();
-void setcod();       
-};
-
-class empleado : public persona{
 	private:
-		float pago;
-		int ventas;
+		string nombre;
+		int codigo;
 	public:
-		void getpago();
-		void setpago();
-		void getventas();
-		void setventas();
-};
-
-class cliente : public persona{
-	private:
-		float pago;
-		int ventas;
-	public:
-		void getpago();
-		void setpago();
-		void getventas();
-		void setventas();
-};
-
-class pelicula{
-	private:
-		char titulo[30];
-		int cantidad;
-		float precio;
-	public:
-		void gettitulo();
-		void settitulo();
-		void getcantidad();
-		void setcantidad();
-		void getprecio();
-		void setprecio();
+		string nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+        int codigo
+        {
+            get { return codigo; }
+            set { nombre = value; }
+        }
 		
 };
 
-<<<<<<< HEAD
 int main(){
 	do{
 		cout<<endl<<"1.CLIENTES"<<endl;
@@ -82,11 +51,9 @@ int main(){
 				break;
 		}
 		getch();
-	} while(opc!='4');
+	} while(opc!='5');
 	return 0;
 	
 }
-=======
->>>>>>> master
 
 
