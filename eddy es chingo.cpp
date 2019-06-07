@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 class persona{
@@ -6,7 +7,7 @@ class persona{
 		string nombre;
 		int codigo;
 	public:
-		string ombre
+		string nombre
         {
             get { return nombre; }
             set { nombre = value; }
