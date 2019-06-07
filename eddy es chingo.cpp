@@ -5,37 +5,74 @@
 
 using namespace std;
 
+#include <iostream>
+#include <conio.h>
+#include <string>
+#include <locale.h>
+
+using namespace std;
+
 class persona{ 
 private: 
-char nombre[20]; 
+string nombre; 
 int codigo; 
 public: 
-void getnom(); 
-void setnom(); 
-void getcod(); 
-void setcod();        
+persona(string,int);
+void mostrarpersona();
+};
+   
  
-class empleado : public persona{ 
+class empleado:public persona{ 
 	private: 
 		float pago; 
 		int ventas; 
-	public: 
-		void getpago(); 
-		void setpago(); 
-		void getventas(); 
-		void setventas(); 
+	public:
+		empleado(string,int,float,int);
+		void mostrarempleado();
+		
 }; 
  
 class cliente : public persona{ 
 	private: 
-		float pago; 
-		int ventas; 
+		string IFE; 
+		int telefono; 
 	public: 
-		void getpago(); 
-		void setpago(); 
-		void getventas(); 
-		void setventas(); 
+		cliente(string,int,,int);
+		void mostrarcliente();
 }; 
+
+persona::persona(string _nombre,int _codigo){
+	nombre=_nombre;
+	codigo=_codigo;
+}
+
+empleado::empleado(string _nombre,int _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+	pago=_pago;
+	ventas=_ventas;
+}
+
+cliente::cliente(string _nombre,int _codigo,string _IFE,int _telefono) : persona(_nombre,_codigo){
+	IFE=_IFE;
+	telefono=_telefono;
+}
+
+void persona::mostrarpersona(string _nombre,int _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+	cout<<"Nombre: "<<nombre<<endl;
+	cout<<"Codigo: "<<codigo<<endl;
+}
+
+void empleado::mostrarempleado(){
+	mostrarpersona();
+	cout<<"Paga: "<<pago<<endl;
+	cout<<"Ventas: "<<ventas<<endl;
+}
+
+void cliente::mostrarcliente(){
+	mostarpersona();
+	cout<<"IFE: "<<IFE<<endl;
+	cout<<"Telefono: "<<telefono<<endl;
+}
+//Falta especificar las funciones y como ordenarlas en el main
  
 class pelicula{ 
 	private: 
