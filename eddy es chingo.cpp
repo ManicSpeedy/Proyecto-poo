@@ -159,7 +159,7 @@ int main(){
 	string contra="";
 	cout<<"Introduce la contraseña: ";
 	cin>>contra;
-	if(contra=="Videoclub"){
+	if(contra == "Videoclub"){
 		do{
 			cout<<endl<<"1.CLIENTES"<<endl;
 			cout<<"2.PELICULAS"<<endl;
@@ -168,11 +168,12 @@ int main(){
 			cout<<"5.SALIR"<<endl;
 			cout<<endl<<"Opcion: "<<endl<<endl;
 			opc=getche();
+			cout<<endl;
 			switch(opc)
 			{
 				case'1':
 					do{
-						cout<<"1.Registrar"<<endl;
+						cout<<endl<<"1.Registrar"<<endl;
 						cout<<"2.Consultar por nombre"<<endl;
 						cout<<"3.Consultar por codigo de cliente"<<endl;
 						cout<<"4.Modificar"<<endl;
@@ -184,26 +185,30 @@ int main(){
 						switch(opc1)
 						{
 							case'1':
+								cout<<endl<<"	Registrar cliente"<<endl;
 								break;
 							case'2':
+								cout<<endl<<"	Consultar por nombre	"<<endl;
 								break;
 							case'3':
+								cout<<endl<<"	Consultar por código de cliente		"<<endl;
 								break;
 							case'4':
+								cout<<endl<<"	Modificar"<<endl;
 								break;
 							case'5':
+								cout<<endl<<"	Lista de clientes"<<endl;
 								break;
 							case'6':
-								cout<<"Saliste de clientes"<<endl;
+								cout<<endl<<"	Saliste de clientes"<<endl;
 								break;
 						}
 					} while (opc1!='6');
-
 	
 					break;
 				case'2':
 					do{
-						cout<<"1.Registrar"<<endl;
+						cout<<endl<<"1.Registrar"<<endl;
 						cout<<"2.Consultar por nombre"<<endl;
 						cout<<"3.Modificar"<<endl;
 						cout<<"4.Reporte de peliculas rentadas"<<endl;
@@ -216,19 +221,25 @@ int main(){
 						switch(opc2)
 						{
 							case'1':
+								cout<<endl<<"	Registrar"<<endl;
 								break;
 							case'2':
+								cout<<endl<<"	Consultar por nombre"<<endl;
 								break;
 							case'3':
+								cout<<endl<<"	Modificar"<<endl;
 								break;
 							case'4':
+								cout<<endl<<"	Reporte de peliculas rentadas"<<endl;
 								break;
 							case'5':
+								cout<<endl<<"	Reporte de peliculas vendidas"<<endl;
 								break;
 							case'6':
+								cout<<endl<<"	Reporte de peliculas disponibles"<<endl;
 								break;
 							case'7':
-								cout<<"Saliste de peliculas"<<endl;
+								cout<<endl<<"	Saliste de peliculas"<<endl;
 								break;		
 						}
 					} while (opc2!='7');
@@ -236,7 +247,7 @@ int main(){
 					break;
 				case'3':
 					do{
-						cout<<"1.Registrar"<<endl;
+						cout<<endl<<"1.Registrar"<<endl;
 						cout<<"2.Consultar por nombre"<<endl;
 						cout<<"3.Consultar por codigo de empleado"<<endl;
 						cout<<"4.Lista de empleados"<<endl;
@@ -247,15 +258,19 @@ int main(){
 						switch(opc3)
 						{
 							case'1':
+								cout<<endl<<"	Registrar"<<endl;
 								break;
 							case'2':
+								cout<<endl<<"	Consultar por nombre"<<endl;
 								break;
 							case'3':
+								cout<<endl<<"	Consultar por codigo de empleado"<<endl;
 								break;
 							case'4':
+								cout<<endl<<"	Lista de empleados"<<endl;
 								break;
 							case'5':
-								cout<<"Saliste de empleados"<<endl;
+								cout<<endl<<"	Saliste de empleados"<<endl;
 								break;
 						}
 					} while (opc3!='5');
@@ -264,18 +279,18 @@ int main(){
 				case'4':
 					break;
 				case'5':
-					cout<<endl<<"Adios"<<endl;
+					cout<<endl<<"	Adios"<<endl;
 					break;
 				default:
-					cout<<endl<<"Error"<<endl;
+					cout<<endl<<"	Error"<<endl;
 					break;
 			}
 			getch();
 		} while(opc!='5');
 	}
 	else
-	cout<<"La contraseña es incorrecta"<<endl;
-	return 0;	
+	cout<<endl<<"	La contraseña es incorrecta"<<endl;
+	return 0;
 }
 
 
