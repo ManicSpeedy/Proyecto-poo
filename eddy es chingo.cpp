@@ -44,11 +44,12 @@ class cliente : public persona{
 class pelicula{
 	private:
 		string titulo;
-		string codigo;
+		string pcodigo;
 		int cantidad;
 		float precio;
 	public:
-		pelicula(string,string,int,float)
+		pelicula(string,string,int,float);
+		void mostrarpelicula();
 };
 
 persona::persona(string _nombre,string _codigo){
@@ -64,6 +65,13 @@ empleado::empleado(string _nombre,string _codigo,float _pago,int _ventas) : pers
 cliente::cliente(string _nombre,string _codigo,string _IFE,int _telefono) : persona(_nombre,_codigo){
 	IFE=_IFE;
 	telefono=_telefono;
+}
+
+pelicula::mostrarpelicula(string _titulo,string _pcodigo,int _cantidad,float _precio){
+	titulo=_titulo;
+	codigo=_pcodigo;
+	cantidad=_cantidad;
+	precio=_precio;
 }
 
 void persona::mostrarpersona(string _nombre,sting _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
@@ -82,23 +90,14 @@ void cliente::mostrarcliente(){
 	cout<<"IFE: "<<IFE<<endl;
 	cout<<"Telefono: "<<telefono<<endl;
 }
-//Falta especificar las funciones y como ordenarlas en el main
- 
-class pelicula{ 
-	private: 
-		char titulo[30]; 
-		int cantidad; 
-		float precio; 
-	public: 
-		void gettitulo(); 
-		void settitulo(); 
-		void getcantidad(); 
-		void setcantidad(); 
-		void getprecio(); 
-		void setprecio(); 
-		 
-}; 
 
+void pelicula::mostrarpelicula(){
+	cout<<"Titulo: "<<titulo<<endl;
+	cout<<"Codigo: "<<pcodigo<<endl;
+	cout<<"Cantidad en tienda: "<<cantidad<<endl;
+	cout<<"Presio de venta: "<<precio<<"$"<<endl;
+}
+//Falta especificar las funciones y como ordenarlas en el main
 
 int main(){
 	setlocale(LC_ALL, "");
