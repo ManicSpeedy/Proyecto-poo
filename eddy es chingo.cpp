@@ -5,20 +5,15 @@
 
 using namespace std;
 
-#include <iostream>
-#include <conio.h>
-#include <string>
-#include <locale.h>
-
-using namespace std;
-
 class persona{ 
 private: 
 string nombre; 
-int codigo; 
+string codigo; 
 public: 
-persona(string,int);
+persona(string,string);
 void mostrarpersona();
+string setnombre();
+string setcodigo();
 };
    
  
@@ -27,7 +22,7 @@ class empleado:public persona{
 		float pago; 
 		int ventas; 
 	public:
-		empleado(string,int,float,int);
+		empleado(string,string,float,int);
 		void mostrarempleado();
 		
 }; 
@@ -37,26 +32,53 @@ class cliente : public persona{
 		string IFE; 
 		int telefono; 
 	public: 
-		cliente(string,int,,int);
+		cliente(string,string,string,int);
 		void mostrarcliente();
 }; 
 
-persona::persona(string _nombre,int _codigo){
+class pelicula{
+	private:
+		string titulo;
+		string pcodigo;
+		int cantidad;
+		float precio;
+	public:
+		pelicula(string,string,int,float);
+		void mostrarpelicula();
+};
+
+string setnombre();
+string setcodigo();
+string setIFE();
+int settelefono();
+string settitulo();
+string setpcodigo();
+int setcantidad();
+float setprecio();
+
+persona::persona(string _nombre,string _codigo){
 	nombre=_nombre;
 	codigo=_codigo;
 }
 
-empleado::empleado(string _nombre,int _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+empleado::empleado(string _nombre,string _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
 	pago=_pago;
 	ventas=_ventas;
 }
 
-cliente::cliente(string _nombre,int _codigo,string _IFE,int _telefono) : persona(_nombre,_codigo){
+cliente::cliente(string _nombre,string _codigo,string _IFE,int _telefono) : persona(_nombre,_codigo){
 	IFE=_IFE;
 	telefono=_telefono;
 }
 
-void persona::mostrarpersona(string _nombre,int _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+pelicula::pelicula(string _titulo,string _pcodigo,int _cantidad,float _precio){
+	titulo=_titulo;
+	pcodigo=_pcodigo;
+	cantidad=_cantidad;
+	precio=_precio;
+}
+
+void persona::mostrarpersona(){
 	cout<<"Nombre: "<<nombre<<endl;
 	cout<<"Codigo: "<<codigo<<endl;
 }
@@ -68,27 +90,68 @@ void empleado::mostrarempleado(){
 }
 
 void cliente::mostrarcliente(){
-	mostarpersona();
+	mostrarpersona();
 	cout<<"IFE: "<<IFE<<endl;
 	cout<<"Telefono: "<<telefono<<endl;
 }
-//Falta especificar las funciones y como ordenarlas en el main
- 
-class pelicula{ 
-	private: 
-		char titulo[30]; 
-		int cantidad; 
-		float precio; 
-	public: 
-		void gettitulo(); 
-		void settitulo(); 
-		void getcantidad(); 
-		void setcantidad(); 
-		void getprecio(); 
-		void setprecio(); 
-		 
-}; 
 
+void pelicula::mostrarpelicula(){
+	cout<<"Titulo: "<<titulo<<endl;
+	cout<<"Codigo: "<<pcodigo<<endl;
+	cout<<"Cantidad en tienda: "<<cantidad<<endl;
+	cout<<"Presio de venta: "<<precio<<"$"<<endl;
+}
+
+string setnombre(){
+	string _nombre;
+	cout<<"Introduce nombre: ";
+	cin>>_nombre;
+	return _nombre;
+}
+string setcodigo(){
+	string _codigo;
+	cout<<"Introduce codigo: ";
+	cin>>_codigo;
+	return _codigo;
+}
+string setIFE(){
+	string _IFE;
+	cout<<"Introduce IFE: ";
+	cin>>_IFE;
+	return _IFE;
+}
+string setpcodigo(){
+	string _pcodigo;
+	cout<<"Introduce codigo: ";
+	cin>>_pcodigo;
+	return _pcodigo;
+}
+string settitulo(){
+	string _titulo;
+	cout<<"Introduce Titulo: ";
+	cin>>_titulo;
+	return _titulo;
+}
+int setcantidad(){
+	int _cantidad;
+	cout<<"Introduce cantidad de copias: ";
+	cin>>_cantidad;
+	return _cantidad;
+}
+int settelefono(){
+	int _telefono;
+	cout<<"Introduce telefono: ";
+	cin>>_telefono;
+	return _telefono;
+}
+float setprecio(){
+	int _precio;
+	cout<<"Introduce precio: ";
+	cin>>_precio;
+	return _precio;
+}
+
+//Falta especificar las funciones y como ordenarlas en el main
 
 int main(){
 	setlocale(LC_ALL, "");
