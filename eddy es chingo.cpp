@@ -15,9 +15,9 @@ using namespace std;
 class persona{ 
 private: 
 string nombre; 
-int codigo; 
+string codigo; 
 public: 
-persona(string,int);
+persona(string,string);
 void mostrarpersona();
 };
    
@@ -27,7 +27,7 @@ class empleado:public persona{
 		float pago; 
 		int ventas; 
 	public:
-		empleado(string,int,float,int);
+		empleado(string,string,float,int);
 		void mostrarempleado();
 		
 }; 
@@ -37,26 +37,36 @@ class cliente : public persona{
 		string IFE; 
 		int telefono; 
 	public: 
-		cliente(string,int,,int);
+		cliente(string,string,string,int);
 		void mostrarcliente();
 }; 
 
-persona::persona(string _nombre,int _codigo){
+class pelicula{
+	private:
+		string titulo;
+		string codigo;
+		int cantidad;
+		float precio;
+	public:
+		pelicula(string,string,int,float)
+};
+
+persona::persona(string _nombre,string _codigo){
 	nombre=_nombre;
 	codigo=_codigo;
 }
 
-empleado::empleado(string _nombre,int _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+empleado::empleado(string _nombre,string _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
 	pago=_pago;
 	ventas=_ventas;
 }
 
-cliente::cliente(string _nombre,int _codigo,string _IFE,int _telefono) : persona(_nombre,_codigo){
+cliente::cliente(string _nombre,string _codigo,string _IFE,int _telefono) : persona(_nombre,_codigo){
 	IFE=_IFE;
 	telefono=_telefono;
 }
 
-void persona::mostrarpersona(string _nombre,int _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+void persona::mostrarpersona(string _nombre,sting _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
 	cout<<"Nombre: "<<nombre<<endl;
 	cout<<"Codigo: "<<codigo<<endl;
 }
