@@ -67,7 +67,7 @@ cliente::cliente(string _nombre,string _codigo,string _IFE,int _telefono) : pers
 	telefono=_telefono;
 }
 
-pelicula::mostrarpelicula(string _titulo,string _pcodigo,int _cantidad,float _precio){
+pelicula::pelicula(string _titulo,string _pcodigo,int _cantidad,float _precio){
 	titulo=_titulo;
 	codigo=_pcodigo;
 	cantidad=_cantidad;
