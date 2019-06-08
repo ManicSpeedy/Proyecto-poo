@@ -6,14 +6,18 @@
 using namespace std;
 
 class persona{ 
-private: 
-string nombre; 
-string codigo; 
-public: 
-persona(string,string);
-void mostrarpersona();
-string setnombre();
-string setcodigo();
+	private: 
+		string nombre; 
+		string codigo;
+		string RFC;
+		string domicilio;
+	public: 
+		persona(string,string,string,string);
+		void mostrarpersona();
+		string setnombre();
+		string setcodigo();
+		string setRFC();
+		string setdomicilio();
 };
    
  
@@ -22,7 +26,7 @@ class empleado:public persona{
 		float pago; 
 		int ventas; 
 	public:
-		empleado(string,string,float,int);
+		empleado(string,string,string,string,float,int);
 		void mostrarempleado();
 		
 }; 
@@ -32,7 +36,7 @@ class cliente : public persona{
 		string IFE; 
 		int telefono; 
 	public: 
-		cliente(string,string,string,int);
+		cliente(string,string,string,string,string,int);
 		void mostrarcliente();
 }; 
 
@@ -49,6 +53,8 @@ class pelicula{
 
 string setnombre();
 string setcodigo();
+string setRFC();
+string setdomicilo();
 string setIFE();
 int settelefono();
 string settitulo();
@@ -56,17 +62,19 @@ string setpcodigo();
 int setcantidad();
 float setprecio();
 
-persona::persona(string _nombre,string _codigo){
+persona::persona(string _nombre, string _codigo, string _RFC, string _domicilio){
 	nombre=_nombre;
 	codigo=_codigo;
+	RFC=_RFC;
+	domicilio=_domicilio;
 }
 
-empleado::empleado(string _nombre,string _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+empleado::empleado(string _nombre,string _codigo, string _RFC, string _domicilio, float _pago,int _ventas) : persona(_nombre,_codigo,_RFC,_domicilio){
 	pago=_pago;
 	ventas=_ventas;
 }
 
-cliente::cliente(string _nombre,string _codigo,string _IFE,int _telefono) : persona(_nombre,_codigo){
+cliente::cliente(string _nombre,string _codigo,string _RFC, string _domicilio, string _IFE,int _telefono) : persona(_nombre,_codigo,_RFC,_domicilio){
 	IFE=_IFE;
 	telefono=_telefono;
 }
@@ -81,6 +89,8 @@ pelicula::pelicula(string _titulo,string _pcodigo,int _cantidad,float _precio){
 void persona::mostrarpersona(){
 	cout<<"Nombre: "<<nombre<<endl;
 	cout<<"Codigo: "<<codigo<<endl;
+	cout<<"RFC: "<<RFC<<endl;
+	cout<<"Domicilio: "<<domicilio<<endl;
 }
 
 void empleado::mostrarempleado(){
@@ -99,7 +109,7 @@ void pelicula::mostrarpelicula(){
 	cout<<"Titulo: "<<titulo<<endl;
 	cout<<"Codigo: "<<pcodigo<<endl;
 	cout<<"Cantidad en tienda: "<<cantidad<<endl;
-	cout<<"Presio de venta: "<<precio<<"$"<<endl;
+	cout<<"Precio de venta: "<<precio<<"$"<<endl;
 }
 
 string setnombre(){
@@ -108,47 +118,68 @@ string setnombre(){
 	cin>>_nombre;
 	return _nombre;
 }
+
 string setcodigo(){
 	string _codigo;
 	cout<<"Introduce codigo: ";
 	cin>>_codigo;
 	return _codigo;
 }
+
 string setIFE(){
 	string _IFE;
 	cout<<"Introduce IFE: ";
 	cin>>_IFE;
 	return _IFE;
 }
+
 string setpcodigo(){
 	string _pcodigo;
 	cout<<"Introduce codigo: ";
 	cin>>_pcodigo;
 	return _pcodigo;
 }
+
 string settitulo(){
 	string _titulo;
 	cout<<"Introduce Titulo: ";
 	cin>>_titulo;
 	return _titulo;
 }
+
 int setcantidad(){
 	int _cantidad;
 	cout<<"Introduce cantidad de copias: ";
 	cin>>_cantidad;
 	return _cantidad;
 }
+
 int settelefono(){
 	int _telefono;
 	cout<<"Introduce telefono: ";
 	cin>>_telefono;
 	return _telefono;
 }
+
 float setprecio(){
 	int _precio;
 	cout<<"Introduce precio: ";
 	cin>>_precio;
 	return _precio;
+}
+
+string setgenero(){
+	string _genero;
+	cout<<"Introduce el genero de la pelicula: ";
+	cin>>_genero;
+	return _genero;	
+}
+
+string setdirector(){
+	string _director;
+	cout<<"Introduce el director de la pelicula: ";
+	cin>>_director;
+	return _director;
 }
 
 //Falta especificar las funciones y como ordenarlas en el main
