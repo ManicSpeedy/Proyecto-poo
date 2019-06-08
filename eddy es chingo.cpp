@@ -5,13 +5,6 @@
 
 using namespace std;
 
-#include <iostream>
-#include <conio.h>
-#include <string>
-#include <locale.h>
-
-using namespace std;
-
 class persona{ 
 private: 
 string nombre; 
@@ -19,6 +12,8 @@ string codigo;
 public: 
 persona(string,string);
 void mostrarpersona();
+string setnombre();
+string set codigo();
 };
    
  
@@ -52,6 +47,15 @@ class pelicula{
 		void mostrarpelicula();
 };
 
+string setnombre();
+string setcodigo();
+string setIFE();
+int settelefono();
+string settitulo();
+string setpcodigo();
+int setcantidad();
+float setprecio();
+
 persona::persona(string _nombre,string _codigo){
 	nombre=_nombre;
 	codigo=_codigo;
@@ -74,7 +78,7 @@ pelicula::pelicula(string _titulo,string _pcodigo,int _cantidad,float _precio){
 	precio=_precio;
 }
 
-void persona::mostrarpersona(string _nombre,sting _codigo,float _pago,int _ventas) : persona(_nombre,_codigo){
+void persona::mostrarpersona(){
 	cout<<"Nombre: "<<nombre<<endl;
 	cout<<"Codigo: "<<codigo<<endl;
 }
@@ -97,6 +101,62 @@ void pelicula::mostrarpelicula(){
 	cout<<"Cantidad en tienda: "<<cantidad<<endl;
 	cout<<"Presio de venta: "<<precio<<"$"<<endl;
 }
+
+string setnombre(){
+	string _nombre;
+	cout<<"Introduce nombre: ";
+	cin>>_nombre;
+	return _nombre;
+}
+string setcodigo(){
+	string _codigo;
+	cout<<"Introduce codigo: ";
+	cin>>_codigo;
+	return _codigo;
+}
+string setIFE(){
+	string _IFE;
+	cout<<"Introduce IFE: ";
+	cin>>_IFE;
+	return _IFE;
+}
+string setpcodigo(){
+	string _pcodigo;
+	cout<<"Introduce codigo: ";
+	cin>>_pcodigo;
+	return _pcodigo;
+}
+string settitulo(){
+	string _titulo;
+	cout<<"Introduce Titulo: ";
+	cin>>_titulo;
+	return _titulo;
+}
+string setcodigo(){
+	string _codigo;
+	cout<<"Introduce codigo: ";
+	cin>>_codigo;
+	return _codigo;
+}
+int setcantidad(){
+	string _cantidad;
+	cout<<"Introduce cantidad de copias: ";
+	cin>>_cantidad;
+	return _cantidad;
+}
+int settelefono(){
+	string _telefono;
+	cout<<"Introduce telefono: ";
+	cin>>_telefono;
+	return _telefono;
+}
+float setprecio(){
+	string _precio;
+	cout<<"Introduce precio: ";
+	cin>>_precio;
+	return _precio;
+}
+
 //Falta especificar las funciones y como ordenarlas en el main
 
 int main(){
