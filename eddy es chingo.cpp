@@ -13,7 +13,7 @@ public:
 persona(string,string);
 void mostrarpersona();
 string setnombre();
-string set codigo();
+string setcodigo();
 };
    
  
@@ -73,7 +73,7 @@ cliente::cliente(string _nombre,string _codigo,string _IFE,int _telefono) : pers
 
 pelicula::pelicula(string _titulo,string _pcodigo,int _cantidad,float _precio){
 	titulo=_titulo;
-	codigo=_pcodigo;
+	pcodigo=_pcodigo;
 	cantidad=_cantidad;
 	precio=_precio;
 }
@@ -90,7 +90,7 @@ void empleado::mostrarempleado(){
 }
 
 void cliente::mostrarcliente(){
-	mostarpersona();
+	mostrarpersona();
 	cout<<"IFE: "<<IFE<<endl;
 	cout<<"Telefono: "<<telefono<<endl;
 }
@@ -132,26 +132,20 @@ string settitulo(){
 	cin>>_titulo;
 	return _titulo;
 }
-string setcodigo(){
-	string _codigo;
-	cout<<"Introduce codigo: ";
-	cin>>_codigo;
-	return _codigo;
-}
 int setcantidad(){
-	string _cantidad;
+	int _cantidad;
 	cout<<"Introduce cantidad de copias: ";
 	cin>>_cantidad;
 	return _cantidad;
 }
 int settelefono(){
-	string _telefono;
+	int _telefono;
 	cout<<"Introduce telefono: ";
 	cin>>_telefono;
 	return _telefono;
 }
 float setprecio(){
-	string _precio;
+	int _precio;
 	cout<<"Introduce precio: ";
 	cin>>_precio;
 	return _precio;
