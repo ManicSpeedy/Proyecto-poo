@@ -218,7 +218,6 @@ string setdirector(){
 
 
 
-//Falta especificar las funciones y como ordenarlas en el main
 
 int main(){
 	setlocale(LC_ALL, "");
