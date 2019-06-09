@@ -47,6 +47,32 @@ void reportarLista(Tlista lista)
     }
 }
 
+void buscarElemento(Tlista lista,string codigo)
+{
+    Tlista q = lista;
+    int i = 1, band = 0;
+
+    while(q!=NULL)
+    {
+        if(q->_codigo==codigo)
+        {
+        cout<<"    Nombre: " << lista->_nombre<<endl;
+        cout<<"    Codigo: "<<lista->_codigo<<endl;
+        cout<<"    Telefono: "<<lista->_telefono<<endl;
+        cout<<"    RFC: "<<lista->_RFC<<endl;
+        cout<<"    Domicilio: "<<lista->_domicilio<<endl;
+        cout<<"    IFE: "<<lista->_IFE<<endl<<endl;
+        lista = lista->sgte;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Numero no encontrado..!"<< endl;
+}
+
 typedef struct nodo1 *Tlista1;
 
 struct nodo1{
@@ -247,6 +273,7 @@ void pelicula::mostrarpelicula(){
 
 string setRFC(){
 	string _RFC;
+	cin.ignore();
 	cout<<"Introduce RFC: ";
 	getline(cin,_RFC);
 	return _RFC;
@@ -254,6 +281,7 @@ string setRFC(){
 
 string setdomicilio(){
 	string _domicilio;
+	cin.ignore();
 	cout<<"Introduce domicilio: ";
 	getline(cin,_domicilio);
 	return _domicilio;
@@ -269,6 +297,7 @@ string setnombre(){
 
 string setcodigo(){
 	string _codigo;
+	cin.ignore();
 	cout<<"Introduce codigo: ";
 	getline(cin,_codigo);
 	return _codigo;
@@ -276,6 +305,7 @@ string setcodigo(){
 
 string setIFE(){
 	string _IFE;
+	cin.ignore();
 	cout<<"Introduce IFE: ";
 	getline(cin,_IFE);
 	return _IFE;
@@ -283,6 +313,7 @@ string setIFE(){
 
 string setpcodigo(){
 	string _pcodigo;
+	cin.ignore();
 	cout<<"Introduce codigo: ";
 	getline(cin,_pcodigo);
 	return _pcodigo;
@@ -298,6 +329,7 @@ string settitulo(){
 
 int setcantidad(){
 	int _cantidad;
+	cout<<"\n";
 	cout<<"Introduce cantidad de copias: ";
 	cin>>_cantidad;
 	return _cantidad;
@@ -305,6 +337,7 @@ int setcantidad(){
 
 int settelefono(){
 	int _telefono;
+	cout<<"\n";
 	cout<<"Introduce telefono: ";
 	cin>>_telefono;
 	return _telefono;
@@ -312,6 +345,7 @@ int settelefono(){
 
 float setprecior(){
 	int _precior;
+	cout<<"\n";
 	cout<<"Introduce precio de renta: ";
 	cin>>_precior;
 	return _precior;
@@ -319,6 +353,7 @@ float setprecior(){
 
 float setpreciov(){
 	int _preciov;
+	cout<<"\n";
 	cout<<"Introduce precio de venta: ";
 	cin>>_preciov;
 	return _preciov;
@@ -326,6 +361,7 @@ float setpreciov(){
 
 string setgenero(){
 	string _genero;
+	cin.ignore();
 	cout<<"Introduce el genero de la pelicula: ";
 	getline(cin,_genero);
 	return _genero;	
@@ -394,6 +430,8 @@ int main(){
 								break;
 							case'3':
 								cout<<endl<<"	Consultar por código de cliente"<<endl;
+								_codigo=setcodigo();
+				                buscarElemento(lista, _codigo);
 								break;
 							case'4':
 								cout<<endl<<"	Modificar"<<endl;
