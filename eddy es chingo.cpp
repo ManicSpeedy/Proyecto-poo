@@ -33,7 +33,7 @@ void reportarLista(Tlista lista)
     
     while(lista != NULL)
     {
-        cout <<' '<< i+1 <<") Nombre: " << lista->_nombre<<endl;
+        cout <<' '<< i+1 <<")Nombre: " << lista->_nombre<<endl;
         cout<<"    Codigo: "<<lista->_codigo<<endl;
         cout<<"    Telefono: "<<lista->_telefono<<endl;
         cout<<"    RFC: "<<lista->_RFC<<endl;
@@ -70,11 +70,53 @@ void reportarLista(Tlista1 lista1)
     
     while(lista1 != NULL)
     {
-        cout <<' '<< i+1 <<") Nombre: " << lista1->_nombre<<endl;
+        cout <<' '<< i+1 <<")Nombre: " << lista1->_nombre<<endl;
         cout<<"    Codigo: "<<lista1->_codigo<<endl;
         cout<<"    RFC: "<<lista1->_RFC<<endl;
         cout<<"    Domicilio: "<<lista1->_domicilio<<endl<<endl;
         lista1 = lista1->sgte;
+        i++;
+    }
+}
+
+typedef struct nodo2 *Tlista2;
+
+struct nodo2{
+   string _titulo,_pcodigo,_director,_genero;
+   int _cantidad;
+   float _precior, _preciov;
+   struct nodo2 *sgte;
+};
+
+void insertarInicio(Tlista2 &lista2,string titulo,string pcodigo,string director,string genero,int cantidad,float precior,float preciov)
+{
+    Tlista2 q; 
+  q = new(struct nodo2);
+  q->_titulo = titulo;
+  q->_pcodigo = pcodigo;
+  q->_director = director;
+  q->_genero = genero;
+  q->_cantidad = cantidad;
+  q->_precior = precior;
+  q->_preciov = preciov;
+  q->sgte = lista2;
+  lista2 = q;
+}
+
+void reportarLista(Tlista2 lista2)
+{
+    int i = 0;
+    
+    while(lista2 != NULL)
+    {
+        cout <<' '<< i+1 <<")Titulo: " << lista2->_titulo<<endl;
+        cout<<"    Codigo: "<<lista2->_pcodigo<<endl;
+        cout<<"    Director: "<<lista2->_director<<endl;
+        cout<<"    Genero: "<<lista2->_genero<<endl;
+        cout<<"    Cantidad: "<<lista2->_cantidad<<endl;
+        cout<<"    Precio de renta: "<<lista2->_precior<<endl;
+ 		cout<<"    Precio de venta: "<<lista2->_preciov<<endl<<endl;
+        lista2 = lista2->sgte;
         i++;
     }
 }
@@ -300,6 +342,7 @@ int main(){
 	float _precior,_preciov;
 	Tlista lista = NULL;
 	Tlista1 lista1 = NULL;
+	Tlista2 lista2 = NULL;
 	string contra="",_nombre,_codigo,_RFC,_domicilio,_IFE,_titulo,_pcodigo,_genero,_director;
 	cout<<"Introduce la contraseña: ";
 	cin>>contra;
@@ -384,6 +427,7 @@ int main(){
 								_preciov = setpreciov();
 								_director = setdirector();
 								_genero = setgenero();
+								insertarInicio(lista2,_titulo,_pcodigo,_director,_genero,_cantidad,_precior,_preciov);
 								cout<<endl<<"	Pelicula registrada con exito"<<endl;
 								break;
 							case'2':
@@ -400,6 +444,8 @@ int main(){
 								break;
 							case'6':
 								cout<<endl<<"	Reporte de peliculas disponibles"<<endl;
+								cout<< "\n\n MOSTRANDO LISTA\n\n";
+                				reportarLista(lista2);
 								break;
 							case'7':
 								cout<<endl<<"	Saliste de peliculas"<<endl;
