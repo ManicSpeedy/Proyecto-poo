@@ -2,6 +2,9 @@
 #include <conio.h>
 #include <string>
 #include <locale.h>
+#include <stdlib.h>
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -245,49 +248,51 @@ void pelicula::mostrarpelicula(){
 string setRFC(){
 	string _RFC;
 	cout<<"Introduce RFC: ";
-	cin>> _RFC;
+	getline(cin,_RFC);
 	return _RFC;
 }
 
 string setdomicilio(){
 	string _domicilio;
 	cout<<"Introduce domicilio: ";
-	cin>>_domicilio;
+	getline(cin,_domicilio);
 	return _domicilio;
 }
 
 string setnombre(){
 	string _nombre;
+	cin.ignore();
 	cout<<"Introduce nombre: ";
-	cin>>_nombre;
+	getline(cin,_nombre);
 	return _nombre;
 }
 
 string setcodigo(){
 	string _codigo;
 	cout<<"Introduce codigo: ";
-	cin>>_codigo;
+	getline(cin,_codigo);
 	return _codigo;
 }
 
 string setIFE(){
 	string _IFE;
 	cout<<"Introduce IFE: ";
-	cin>>_IFE;
+	getline(cin,_IFE);
 	return _IFE;
 }
 
 string setpcodigo(){
 	string _pcodigo;
 	cout<<"Introduce codigo: ";
-	cin>>_pcodigo;
+	getline(cin,_pcodigo);
 	return _pcodigo;
 }
 
 string settitulo(){
 	string _titulo;
+	cin.ignore();
 	cout<<"Introduce Titulo: ";
-	cin>>_titulo;
+	getline(cin,_titulo);
 	return _titulo;
 }
 
@@ -322,14 +327,15 @@ float setpreciov(){
 string setgenero(){
 	string _genero;
 	cout<<"Introduce el genero de la pelicula: ";
-	cin>>_genero;
+	getline(cin,_genero);
 	return _genero;	
 }
 
 string setdirector(){
 	string _director;
+	cin.ignore();
 	cout<<"Introduce el director de la pelicula: ";
-	cin>>_director;
+	getline(cin,_director);
 	return _director;
 }
 
