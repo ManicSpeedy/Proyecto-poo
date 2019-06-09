@@ -5,6 +5,46 @@
 
 using namespace std;
 
+typedef struct nodo *Tlista;
+
+struct nodo{
+   string _nombre,_codigo,_RFC,_domicilio,_IFE;
+   int _telefono;
+   struct nodo *sgte;
+};
+
+void insertarInicio(Tlista &lista,string nombre,string codigo,string RFC,string domicilio,string IFE,int telefono)
+{
+    Tlista q; 
+  q = new(struct nodo);
+  q->_nombre = nombre;
+  q->_codigo = codigo;
+  q->_RFC = RFC;
+  q->_domicilio = domicilio;
+  q->_IFE = IFE;
+  q->_telefono = telefono;
+  q->sgte = lista;
+  lista = q;
+}
+
+void reportarLista(Tlista lista)
+{
+    int i = 0;
+    
+    while(lista != NULL)
+    {
+        cout <<' '<< i+1 <<") Nombre: " << lista->_nombre<<endl;
+        cout<<"    Codigo: "<<lista->_codigo<<endl;
+        cout<<"    Telefono: "<<lista->_telefono<<endl;
+        cout<<"    RFC: "<<lista->_RFC<<endl;
+        cout<<"    Domicilio: "<<lista->_domicilio<<endl;
+        cout<<"    IFE: "<<lista->_IFE<<endl;
+        lista = lista->sgte;
+        i++;
+    }
+}
+
+
 class persona{ 
 	private: 
 		string nombre; 
@@ -223,6 +263,7 @@ int main(){
 	setlocale(LC_ALL, "");
 	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i;
 	float _precior,_preciov;
+	Tlista lista = NULL;
 	string contra="",_nombre,_codigo,_RFC,_domicilio,_IFE,_titulo,_pcodigo,_genero,_director;
 	cout<<"Introduce la contraseña: ";
 	cin>>contra;
@@ -259,6 +300,7 @@ int main(){
 								_domicilio=setdomicilio();
 								_IFE=setIFE();
 								_telefono=settelefono();
+								insertarInicio(lista,_nombre,_codigo,_RFC,_domicilio,_IFE,_telefono);
 								cout<<endl<<"	Cliente registrado con exito"<<endl;
 								
 								break;
@@ -273,6 +315,9 @@ int main(){
 								break;
 							case'5':
 								cout<<endl<<"	Lista de clientes"<<endl;
+								cout<<endl<<"Lista de clientes"<<endl;
+								cout << "\n\n MOSTRANDO LISTA\n\n";
+                				reportarLista(lista);
 								break;
 							case'6':
 								cout<<endl<<"	Saliste de clientes"<<endl;
