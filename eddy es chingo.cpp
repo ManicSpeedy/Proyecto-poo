@@ -217,6 +217,8 @@ int main(){
 						{
 							case'1':
 								cout<<endl<<"	Registrar cliente"<<endl;
+								cliente clientes;
+								clientes.setnombre()
 								break;
 							case'2':
 								cout<<endl<<"	Consultar por nombre	"<<endl;
