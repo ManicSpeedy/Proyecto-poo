@@ -1,6 +1,6 @@
 #include <iostream>
 #include <conio.h>
-#include <string>
+#include <string.h>
 #include <locale.h>
 #include <stdlib.h>
 #include <fstream>
@@ -47,22 +47,23 @@ void reportarLista(Tlista lista)
     }
 }
 
-void buscarElemento(Tlista lista,string codigo)
+void buscarElementocodigo(Tlista lista,string codigo)
 {
     Tlista q = lista;
+    char palabra1[50],palabra2[50];
     int i = 1, band = 0;
-
+    strcpy(palabra2,codigo.c_str());
     while(q!=NULL)
     {
-        if(q->_codigo==codigo)
+    	strcpy(palabra1,q->_codigo.c_str());
+        if(strcmp(palabra1,palabra2) == 0)
         {
-        cout<<"    Nombre: " << lista->_nombre<<endl;
-        cout<<"    Codigo: "<<lista->_codigo<<endl;
-        cout<<"    Telefono: "<<lista->_telefono<<endl;
-        cout<<"    RFC: "<<lista->_RFC<<endl;
-        cout<<"    Domicilio: "<<lista->_domicilio<<endl;
-        cout<<"    IFE: "<<lista->_IFE<<endl<<endl;
-        lista = lista->sgte;
+        cout<<"    Nombre: " << q->_nombre<<endl;
+        cout<<"    Codigo: "<<q->_codigo<<endl;
+        cout<<"    Telefono: "<<q->_telefono<<endl;
+        cout<<"    RFC: "<<q->_RFC<<endl;
+        cout<<"    Domicilio: "<<q->_domicilio<<endl;
+        cout<<"    IFE: "<<q->_IFE<<endl<<endl;
     	band = 1;
         }
         q = q->sgte;
@@ -70,9 +71,37 @@ void buscarElemento(Tlista lista,string codigo)
     }
 
     if(band==0)
-        cout<<"\n\n Numero no encontrado..!"<< endl;
+        cout<<"\n\n Codigo no encontrado..!"<< endl;
 }
 
+void buscarElementonombre(Tlista lista,string nombre)
+{
+    Tlista q = lista;
+	int i = 1, band = 0;
+	char palabra1[50],palabra2[50];
+	strcpy(palabra2,nombre.c_str());
+    while(q!=NULL)
+    {
+        strcpy(palabra1,q->_nombre.c_str());
+		if(strcmp(palabra1,palabra2)==0)
+        {
+        cout<<"    Nombre: " << q->_nombre<<endl;
+        cout<<"    Codigo: "<<q->_codigo<<endl;
+        cout<<"    Telefono: "<<q->_telefono<<endl;
+        cout<<"    RFC: "<<q->_RFC<<endl;
+        cout<<"    Domicilio: "<<q->_domicilio<<endl;
+        cout<<"    IFE: "<<q->_IFE<<endl<<endl;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Nombre no encontrado..!"<< endl;
+}
+
+//----------------------------------------------------------------
 typedef struct nodo1 *Tlista1;
 
 struct nodo1{
@@ -93,7 +122,7 @@ void insertarInicio1(Tlista1 &lista1,string nombre,string codigo,string RFC,stri
   lista1 = q;
 }
 
-void reportarLista(Tlista1 lista1)
+void reportarLista1(Tlista1 lista1)
 {
     int i = 0;
     
@@ -108,6 +137,57 @@ void reportarLista(Tlista1 lista1)
     }
 }
 
+void buscarElementocodigo1(Tlista1 lista1,string codigo)
+{
+    Tlista1 q = lista1;
+    int i = 1, band = 0;
+	char palabra1[50],palabra2[50];
+	strcpy(palabra2,codigo.c_str());
+    while(q!=NULL)
+    {
+        strcpy(palabra1,q->_codigo.c_str());
+		if(strcmp(palabra1,palabra2)==0)
+        {
+        cout<<"    Nombre: " << q->_nombre<<endl;
+        cout<<"    Codigo: "<<q->_codigo<<endl;
+        cout<<"    RFC: "<<q->_RFC<<endl;
+        cout<<"    Domicilio: "<<q->_domicilio<<endl;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Codigo no encontrado..!"<< endl;
+}
+
+void buscarElementonombre1(Tlista1 lista1,string nombre)
+{
+    Tlista1 q = lista1;
+    int i = 1, band = 0;
+	char palabra1[50],palabra2[50];
+	strcpy(palabra2,nombre.c_str());
+    while(q!=NULL)
+    {
+        strcpy(palabra1,q->_nombre.c_str());
+		if(strcmp(palabra1,palabra2)==0)
+        {
+        cout<<"    Nombre: " <<q->_nombre<<endl;
+        cout<<"    Codigo: "<<q->_codigo<<endl;
+        cout<<"    RFC: "<<q->_RFC<<endl;
+        cout<<"    Domicilio: "<<q->_domicilio<<endl;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Numero no encontrado..!"<< endl;
+}
+
+//---------------------------------------------------------------------
 typedef struct nodo2 *Tlista2;
 
 struct nodo2{
@@ -132,7 +212,7 @@ void insertarInicio(Tlista2 &lista2,string titulo,string pcodigo,string director
   lista2 = q;
 }
 
-void reportarLista(Tlista2 lista2)
+void reportarLista2(Tlista2 lista2)
 {
     int i = 0;
     
@@ -143,11 +223,39 @@ void reportarLista(Tlista2 lista2)
         cout<<"    Director: "<<lista2->_director<<endl;
         cout<<"    Genero: "<<lista2->_genero<<endl;
         cout<<"    Cantidad: "<<lista2->_cantidad<<endl;
-        cout<<"    Precio de renta: "<<lista2->_precior<<endl;
- 		cout<<"    Precio de venta: "<<lista2->_preciov<<endl<<endl;
+        cout<<"    Precio de renta: $"<<lista2->_precior<<endl;
+ 		cout<<"    Precio de venta: $"<<lista2->_preciov<<endl<<endl;
         lista2 = lista2->sgte;
         i++;
     }
+}
+
+void buscarElementonombre2(Tlista2 lista2,string titulo)
+{
+    Tlista2 q = lista2;
+    int i = 1, band = 0;
+	char palabra1[50],palabra2[50];
+	strcpy(palabra2,titulo.c_str());
+    while(q!=NULL)
+    {
+        strcpy(palabra1,q->_titulo.c_str());
+		if(strcmp(palabra1,palabra2)==0)
+        {
+        cout<<"    Titulo: " << q->_titulo<<endl;
+        cout<<"    Codigo: "<<q->_pcodigo<<endl;
+        cout<<"    Director: "<<q->_director<<endl;
+        cout<<"    Genero: "<<q->_genero<<endl;
+        cout<<"    Cantidad: "<<q->_cantidad<<endl;
+        cout<<"    Precio de renta: $"<<q->_precior<<endl;
+ 		cout<<"    Precio de venta: $"<<q->_preciov<<endl<<endl;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Titulo no encontrado..!"<< endl;
 }
 
 
@@ -355,6 +463,7 @@ float setpreciov(){
 	int _preciov;
 	cout<<"\n";
 	cout<<"Introduce precio de venta: ";
+	cout<<"\n";
 	cin>>_preciov;
 	return _preciov;
 }
@@ -427,11 +536,13 @@ int main(){
 								break;
 							case'2':
 								cout<<endl<<"	Consultar por nombre"<<endl;
+								_nombre=setnombre();
+				                buscarElementonombre(lista, _nombre);
 								break;
 							case'3':
 								cout<<endl<<"	Consultar por código de cliente"<<endl;
 								_codigo=setcodigo();
-				                buscarElemento(lista, _codigo);
+				                buscarElementocodigo(lista, _codigo);
 								break;
 							case'4':
 								cout<<endl<<"	Modificar"<<endl;
@@ -475,7 +586,9 @@ int main(){
 								cout<<endl<<"	Pelicula registrada con exito"<<endl;
 								break;
 							case'2':
-								cout<<endl<<"	Consultar por nombre"<<endl;
+								cout<<endl<<"	Consultar por titulo"<<endl;
+								_titulo=settitulo();
+				                buscarElementonombre2(lista2, _titulo);
 								break;
 							case'3':
 								cout<<endl<<"	Modificar"<<endl;
@@ -489,7 +602,7 @@ int main(){
 							case'6':
 								cout<<endl<<"	Reporte de peliculas disponibles"<<endl;
 								cout<< "\n\n MOSTRANDO LISTA\n\n";
-                				reportarLista(lista2);
+                				reportarLista2(lista2);
 								break;
 							case'7':
 								cout<<endl<<"	Saliste de peliculas"<<endl;
@@ -521,14 +634,18 @@ int main(){
 								break;
 							case'2':
 								cout<<endl<<"	Consultar por nombre"<<endl;
+								_nombre=setnombre();
+				                buscarElementonombre1(lista1, _nombre);
 								break;
 							case'3':
 								cout<<endl<<"	Consultar por codigo de empleado"<<endl;
+								_codigo=setcodigo();
+				                buscarElementocodigo1(lista1, _codigo);
 								break;
 							case'4':
 								cout<<endl<<"	Lista de empleados"<<endl;
 								cout<< "\n\n MOSTRANDO LISTA\n\n";
-                				reportarLista(lista1);
+                				reportarLista1(lista1);
 								break;
 							case'5':
 								cout<<endl<<"	Saliste de empleados"<<endl;
