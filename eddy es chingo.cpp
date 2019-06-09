@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <string>
 #include <locale.h>
-//hols
+
 using namespace std;
 
 typedef struct nodo *Tlista;
@@ -38,8 +38,43 @@ void reportarLista(Tlista lista)
         cout<<"    Telefono: "<<lista->_telefono<<endl;
         cout<<"    RFC: "<<lista->_RFC<<endl;
         cout<<"    Domicilio: "<<lista->_domicilio<<endl;
-        cout<<"    IFE: "<<lista->_IFE<<endl;
+        cout<<"    IFE: "<<lista->_IFE<<endl<<endl;
         lista = lista->sgte;
+        i++;
+    }
+}
+
+typedef struct nodo1 *Tlista1;
+
+struct nodo1{
+   string _nombre,_codigo,_RFC,_domicilio,_IFE;
+   int _telefono;
+   struct nodo1 *sgte;
+};
+
+void insertarInicio1(Tlista1 &lista1,string nombre,string codigo,string RFC,string domicilio)
+{
+    Tlista1 q; 
+  q = new(struct nodo1);
+  q->_nombre = nombre;
+  q->_codigo = codigo;
+  q->_RFC = RFC;
+  q->_domicilio = domicilio;
+  q->sgte = lista1;
+  lista1 = q;
+}
+
+void reportarLista(Tlista1 lista1)
+{
+    int i = 0;
+    
+    while(lista1 != NULL)
+    {
+        cout <<' '<< i+1 <<") Nombre: " << lista1->_nombre<<endl;
+        cout<<"    Codigo: "<<lista1->_codigo<<endl;
+        cout<<"    RFC: "<<lista1->_RFC<<endl;
+        cout<<"    Domicilio: "<<lista1->_domicilio<<endl<<endl;
+        lista1 = lista1->sgte;
         i++;
     }
 }
@@ -264,8 +299,9 @@ int main(){
 	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i;
 	float _precior,_preciov;
 	Tlista lista = NULL;
+	Tlista1 lista1 = NULL;
 	string contra="",_nombre,_codigo,_RFC,_domicilio,_IFE,_titulo,_pcodigo,_genero,_director;
-	cout<<"Introduce la contrase?a: ";
+	cout<<"Introduce la contraseña: ";
 	cin>>contra;
 	if(contra == "Videoclub"){
 		do{
@@ -308,14 +344,13 @@ int main(){
 								cout<<endl<<"	Consultar por nombre"<<endl;
 								break;
 							case'3':
-								cout<<endl<<"	Consultar por c?digo de cliente"<<endl;
+								cout<<endl<<"	Consultar por código de cliente"<<endl;
 								break;
 							case'4':
 								cout<<endl<<"	Modificar"<<endl;
 								break;
 							case'5':
 								cout<<endl<<"	Lista de clientes"<<endl;
-								cout<<endl<<"Lista de clientes"<<endl;
 								cout << "\n\n MOSTRANDO LISTA\n\n";
                 				reportarLista(lista);
 								break;
@@ -386,11 +421,12 @@ int main(){
 						switch(opc3)
 						{
 							case'1':
-								cout<<endl<<"	Registrar empleado"<<endl;
+								cout<<endl<<"	Registrar empleado"<<endl<<endl;
 								_nombre=setnombre();
 								_codigo=setcodigo();
 								_RFC=setRFC();
 								_domicilio=setdomicilio();
+								insertarInicio1(lista1,_nombre,_codigo,_RFC,_domicilio);
 								cout<<endl<<"	Empleado registrado con exito"<<endl;
 								break;
 							case'2':
@@ -401,6 +437,8 @@ int main(){
 								break;
 							case'4':
 								cout<<endl<<"	Lista de empleados"<<endl;
+								cout<< "\n\n MOSTRANDO LISTA\n\n";
+                				reportarLista(lista1);
 								break;
 							case'5':
 								cout<<endl<<"	Saliste de empleados"<<endl;
@@ -440,6 +478,6 @@ int main(){
 		} while(opc!='5');
 	}
 	else
-	cout<<endl<<"	La contrase?a es incorrecta"<<endl;
+	cout<<endl<<"	La contraseña es incorrecta"<<endl;
 	return 0;
 }
