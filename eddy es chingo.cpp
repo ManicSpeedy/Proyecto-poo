@@ -112,6 +112,20 @@ void pelicula::mostrarpelicula(){
 	cout<<"Precio de venta: "<<precio<<"$"<<endl;
 }
 
+string setRFC(){
+	string _RFC;
+	cout<<"Introduce RFC: ";
+	cin>> _RFC;
+	return _RFC;
+}
+
+string setdomicilio(){
+	string _domicilio;
+	cout<<"Introduce domicilio: ";
+	cin>>_domicilio;
+	return _domicilio;
+}
+
 string setnombre(){
 	string _nombre;
 	cout<<"Introduce nombre: ";
@@ -186,7 +200,7 @@ string setdirector(){
 
 int main(){
 	setlocale(LC_ALL, "");
-	int opc, opc1, opc2, opc3;
+	int opc, opc1, opc2, opc3, opc4;
 	string contra="";
 	cout<<"Introduce la contraseña: ";
 	cin>>contra;
@@ -197,7 +211,7 @@ int main(){
 			cout<<"3.EMPLEADO"<<endl;
 			cout<<"4.REALIZAR RENTA O VENTA"<<endl;
 			cout<<"5.SALIR"<<endl;
-			cout<<endl<<"Opcion: "<<endl<<endl;
+			cout<<endl<<"Opcion: ";
 			opc=getche();
 			cout<<endl;
 			switch(opc)
@@ -217,8 +231,6 @@ int main(){
 						{
 							case'1':
 								cout<<endl<<"	Registrar cliente"<<endl;
-								cliente clientes;
-								clientes.setnombre()
 								break;
 							case'2':
 								cout<<endl<<"	Consultar por nombre	"<<endl;
@@ -310,6 +322,24 @@ int main(){
 				
 					break;
 				case'4':
+					do{
+						cout<<endl<<"1.Renta"<<endl;
+						cout<<"2.Venta"<<endl;
+						cout<<"3.Salir"<<endl;
+						cout<<endl<<"Opcion: ";
+						cin>>opc4;
+						switch(opc4){
+							case 1:
+								cout<<endl<<"	Renta"<<endl;
+								break;
+							
+							case 2:
+								cout<<endl<<"	Venta"<<endl;
+								break;
+						}
+					}while(opc4=!3);
+
+					
 					break;
 				case'5':
 					cout<<endl<<"	Adios"<<endl;
