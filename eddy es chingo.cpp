@@ -200,8 +200,9 @@ string setdirector(){
 
 int main(){
 	setlocale(LC_ALL, "");
-	int opc, opc1, opc2, opc3, opc4;
-	string contra="";
+	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i;
+	float _precio;
+	string contra="",_nombre,_codigo,_RFC,_domicilio,_IFE,_titulo,_pcodigo;
 	cout<<"Introduce la contraseña: ";
 	cin>>contra;
 	if(contra == "Videoclub"){
@@ -230,22 +231,29 @@ int main(){
 						switch(opc1)
 						{
 							case'1':
-								cout<<endl<<"	Registrar cliente"<<endl;
+								cout<<endl<<"Registrar cliente"<<endl;
+								_nombre=setnombre();
+								_codigo=setcodigo();
+								_RFC=setRFC();
+								_domicilio=setdomicilio();
+								_IFE=setIFE();
+								_telefono=settelefono();
+								
 								break;
 							case'2':
-								cout<<endl<<"	Consultar por nombre	"<<endl;
+								cout<<endl<<"Consultar por nombre	"<<endl;
 								break;
 							case'3':
-								cout<<endl<<"	Consultar por código de cliente		"<<endl;
+								cout<<endl<<"Consultar por código de cliente		"<<endl;
 								break;
 							case'4':
-								cout<<endl<<"	Modificar"<<endl;
+								cout<<endl<<"Modificar"<<endl;
 								break;
 							case'5':
-								cout<<endl<<"	Lista de clientes"<<endl;
+								cout<<endl<<"Lista de clientes"<<endl;
 								break;
 							case'6':
-								cout<<endl<<"	Saliste de clientes"<<endl;
+								cout<<endl<<"Saliste de clientes"<<endl;
 								break;
 						}
 					} while (opc1!='6');
@@ -266,25 +274,25 @@ int main(){
 						switch(opc2)
 						{
 							case'1':
-								cout<<endl<<"	Registrar"<<endl;
+								cout<<endl<<"Registrar"<<endl;
 								break;
 							case'2':
-								cout<<endl<<"	Consultar por nombre"<<endl;
+								cout<<endl<<"Consultar por nombre"<<endl;
 								break;
 							case'3':
-								cout<<endl<<"	Modificar"<<endl;
+								cout<<endl<<"Modificar"<<endl;
 								break;
 							case'4':
-								cout<<endl<<"	Reporte de peliculas rentadas"<<endl;
+								cout<<endl<<"Reporte de peliculas rentadas"<<endl;
 								break;
 							case'5':
-								cout<<endl<<"	Reporte de peliculas vendidas"<<endl;
+								cout<<endl<<"Reporte de peliculas vendidas"<<endl;
 								break;
 							case'6':
-								cout<<endl<<"	Reporte de peliculas disponibles"<<endl;
+								cout<<endl<<"Reporte de peliculas disponibles"<<endl;
 								break;
 							case'7':
-								cout<<endl<<"	Saliste de peliculas"<<endl;
+								cout<<endl<<"Saliste de peliculas"<<endl;
 								break;		
 						}
 					} while (opc2!='7');
@@ -303,19 +311,19 @@ int main(){
 						switch(opc3)
 						{
 							case'1':
-								cout<<endl<<"	Registrar"<<endl;
+								cout<<endl<<"Registrar"<<endl;
 								break;
 							case'2':
-								cout<<endl<<"	Consultar por nombre"<<endl;
+								cout<<endl<<"Consultar por nombre"<<endl;
 								break;
 							case'3':
-								cout<<endl<<"	Consultar por codigo de empleado"<<endl;
+								cout<<endl<<"Consultar por codigo de empleado"<<endl;
 								break;
 							case'4':
-								cout<<endl<<"	Lista de empleados"<<endl;
+								cout<<endl<<"Lista de empleados"<<endl;
 								break;
 							case'5':
-								cout<<endl<<"	Saliste de empleados"<<endl;
+								cout<<endl<<"Saliste de empleados"<<endl;
 								break;
 						}
 					} while (opc3!='5');
@@ -330,11 +338,11 @@ int main(){
 						cin>>opc4;
 						switch(opc4){
 							case 1:
-								cout<<endl<<"	Renta"<<endl;
+								cout<<endl<<"Renta"<<endl;
 								break;
 							
 							case 2:
-								cout<<endl<<"	Venta"<<endl;
+								cout<<endl<<"Venta"<<endl;
 								break;
 						}
 					}while(opc4=!3);
@@ -342,10 +350,10 @@ int main(){
 					
 					break;
 				case'5':
-					cout<<endl<<"	Adios"<<endl;
+					cout<<endl<<"Adios"<<endl;
 					break;
 				default:
-					cout<<endl<<"	Error"<<endl;
+					cout<<endl<<"Error"<<endl;
 					break;
 			}
 			getch();
