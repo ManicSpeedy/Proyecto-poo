@@ -101,6 +101,84 @@ void buscarElementonombre(Tlista lista,string nombre)
         cout<<"\n\n Nombre no encontrado..!"<< endl;
 }
 
+void eliminarElemento(Tlista &lista,string codigo)
+{
+    Tlista q, ant;
+    q = lista;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,codigo.c_str());
+    
+    if(lista!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_codigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+                if(q==lista)
+                    lista = lista->sgte;
+                else
+                    ant->sgte = q->sgte;
+            
+                delete(q);
+                return;
+            }
+            ant = q;
+            q = q->sgte;
+        }
+    }
+    else
+        cout<<" Lista vacia..!";
+}
+
+void modificarElemento(Tlista &lista,string codigo)
+{
+    Tlista q;
+    q = lista;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,codigo.c_str());
+    string nombre,pcodigo,RFC,domicilio,IFE;
+    int telefono;
+    if(lista!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_codigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+				cin.ignore();
+				cout<<"Introduce Nombre: ";
+				getline(cin,nombre);
+				q->_nombre = nombre;
+				cin.ignore();
+				cout<<"Introduce Codigo: ";
+				getline(cin,pcodigo);
+				q->_codigo = codigo;
+				cin.ignore();
+				cout<<"Introduce RFC: ";
+				getline(cin,RFC);
+				q->_RFC = RFC;
+				cin.ignore();
+				cout<<"Introduce Domicilio: ";
+				getline(cin,domicilio);
+				q->_domicilio = domicilio;
+				cin.ignore();
+				cout<<"Introduce IFE: ";
+				getline(cin,IFE);
+				q->_IFE = IFE;
+				cin.ignore();
+				cout<<"Introduce Telefono: ";
+				cin>>telefono;
+				q->_telefono = telefono; 
+				return;
+            }
+            q = q->sgte;
+        }
+    }
+    else
+        cout<<" Lista vacia..!";
+}
+
 //----------------------------------------------------------------
 typedef struct nodo1 *Tlista1;
 
@@ -555,7 +633,28 @@ int main(){
 								break;
 							case'4':
 								cout<<endl<<"	Modificar"<<endl;
-								break;
+								do{
+									cout<<endl<<"1.Modificar"<<endl;
+									cout<<"2.Eliminar"<<endl;
+									cout<<"3.Salir"<<endl;
+									opc2=getche();
+									switch(opc2){
+										case '1':
+											cout<<endl<<"	Introduce el codigo del cliente"<<endl;
+											_codigo=setcodigo();
+							                modificarElemento(lista, _codigo);
+											break;
+											case '2':
+											cout<<endl<<"	Introduce el codigo del cliente"<<endl;
+											_codigo=setcodigo();
+							                eliminarElemento(lista, _codigo);
+											break;
+											case '3':
+											cout<<endl<<"	Saliste de modificar"<<endl;
+											break;
+									}
+								}while(opc2!='3');
+								
 							case'5':
 								cout<<endl<<"	Lista de clientes"<<endl;
 								cout << "\n\n MOSTRANDO LISTA\n\n";
