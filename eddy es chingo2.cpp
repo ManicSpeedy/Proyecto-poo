@@ -17,6 +17,29 @@ struct nodo{
    struct nodo *sgte;
 };
 
+int check(Tlista lista,string codigo)
+{
+    Tlista q = lista;
+    char palabra1[50],palabra2[50];
+    int i = 1, band = 0 ,check=1;
+    strcpy(palabra2,codigo.c_str());
+    while(q!=NULL)
+    {
+    	strcpy(palabra1,q->_codigo.c_str());
+        if(strcmp(palabra1,palabra2) == 0)
+        {
+        check=0;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Codigo no encontrado..!"<< endl;
+    return check;
+}
+
 void insertarInicio(Tlista &lista,string nombre,string codigo,string RFC,string domicilio,string IFE,int telefono)
 {
     Tlista q; 
@@ -74,6 +97,8 @@ void buscarElementocodigo(Tlista lista,string codigo)
     if(band==0)
         cout<<"\n\n Codigo no encontrado..!"<< endl;
 }
+
+
 
 void buscarElementonombre(Tlista lista,string nombre)
 {
@@ -191,6 +216,29 @@ struct nodo1{
    struct nodo1 *sgte;
 };
 
+int check1(Tlista1 lista1,string codigo)
+{
+    Tlista1 q = lista1;
+    char palabra1[50],palabra2[50];
+    int i = 1, band = 0 ,check=1;
+    strcpy(palabra2,codigo.c_str());
+    while(q!=NULL)
+    {
+    	strcpy(palabra1,q->_codigo.c_str());
+        if(strcmp(palabra1,palabra2) == 0)
+        {
+        check=0;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Codigo no encontrado..!"<< endl;
+    return check;
+}
+
 void insertarInicio1(Tlista1 &lista1,string nombre,string codigo,string RFC,string domicilio)
 {
     Tlista1 q; 
@@ -249,6 +297,7 @@ void buscarElementocodigo1(Tlista1 lista1,string codigo)
         cout<<"\n\n Codigo no encontrado..!"<< endl;
 }
 
+
 void buscarElementonombre1(Tlista1 lista1,string nombre)
 {
     Tlista1 q = lista1;
@@ -285,6 +334,29 @@ struct nodo2{
    float _precior, _preciov;
    struct nodo2 *sgte;
 };
+
+int check2(Tlista2 lista2,string codigo)
+{
+    Tlista2 q = lista2;
+    char palabra1[50],palabra2[50];
+    int i = 1, band = 0 ,check=1;
+    strcpy(palabra2,codigo.c_str());
+    while(q!=NULL)
+    {
+    	strcpy(palabra1,q->_codigo.c_str());
+        if(strcmp(palabra1,palabra2) == 0)
+        {
+        check=0;
+    	band = 1;
+        }
+        q = q->sgte;
+        i++;
+    }
+
+    if(band==0)
+        cout<<"\n\n Codigo no encontrado..!"<< endl;
+    return check;
+}
 
 void insertarInicio(Tlista2 &lista2,string titulo,string pcodigo,string director,string genero,int cantidad,float precior,float preciov)
 {
@@ -553,6 +625,7 @@ void pelicula::mostrarpelicula(){
 	cout<<"Genero: "<<genero<<endl;
 }
 
+
 string setRFC(){
 	string _RFC;
 	cin.ignore();
@@ -667,16 +740,14 @@ string setdirector(){
 }
 
 
-
-
 int main(){
 	setlocale(LC_ALL, "");
-	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i;
+	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i,_check;
 	float _precior,_preciov;
 	Tlista lista = NULL;
 	Tlista1 lista1 = NULL;
 	Tlista2 lista2 = NULL;
-	string contra="",_nombre,_codigo,_RFC,_domicilio,_IFE,_titulo,_pcodigo,_genero,_director;
+	string contra="",_nombre,_codigo,_RFC,_domicilio,_IFE,_titulo,_pcodigo,_genero,_director,_empleado,_cliente,_pelicula;
 	cout<<"Introduce la contraseña: ";
 	cin>>contra;
 	if(contra == "Videoclub"){
@@ -895,22 +966,43 @@ int main(){
 							case 1:
 								cout<<endl<<"	Renta"<<endl;
 								cout<<"Ingresa el codigo del empleado"<<endl;
-								setcodigo();
+								_empleado=setcodigo();
+								_check=check1(lista1, _empleado);
+								if(_check==1)
+								break;
 								cout<<"Ingresa el codigo del cliente";
-								setcodigo();
+								_cliente=setcodigo();
+								_check=check(lista, _cliente);
+								if(_check==1)
+								break;
 								cout<<"Ingresa el codigo de la pelicula"<<endl;
-								setcodigo();
+								_pelicula=setcodigo();
+								_check=check2(lista2, _pelicula);
+								if(_check==1)
+								break;
+								cout<<"smn";
+								break;
 
 								break;
 							
 							case 2:
 								cout<<endl<<"	Venta"<<endl;
 								cout<<"Ingresa el codigo del empleado"<<endl;
-								setcodigo();
+								_empleado=setcodigo();
+								_check=check1(lista1, _empleado);
+								if(_check==1)
+								break;
 								cout<<"Ingresa el codigo del cliente";
-								setcodigo();
+								_cliente=setcodigo();
+								_check=check(lista, _cliente);
+								if(_check==1)
+								break;
 								cout<<"Ingresa el codigo de la pelicula"<<endl;
-								setcodigo();
+								_pelicula=setcodigo();
+								_check=check2(lista2, _pelicula);
+								if(_check==1)
+								break;
+								cout<<"smn";
 								break;
 						}
 					}while(opc4=!3);
