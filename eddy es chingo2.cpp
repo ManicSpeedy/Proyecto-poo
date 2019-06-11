@@ -894,10 +894,23 @@ int main(){
 						switch(opc4){
 							case 1:
 								cout<<endl<<"	Renta"<<endl;
+								cout<<"Ingresa el codigo del empleado"<<endl;
+								setcodigo();
+								cout<<"Ingresa el codigo del cliente";
+								setcodigo();
+								cout<<"Ingresa el codigo de la pelicula"<<endl;
+								setcodigo();
+
 								break;
 							
 							case 2:
 								cout<<endl<<"	Venta"<<endl;
+								cout<<"Ingresa el codigo del empleado"<<endl;
+								setcodigo();
+								cout<<"Ingresa el codigo del cliente";
+								setcodigo();
+								cout<<"Ingresa el codigo de la pelicula"<<endl;
+								setcodigo();
 								break;
 						}
 					}while(opc4=!3);
