@@ -474,6 +474,49 @@ void modificarPelicula(Tlista2 &lista2, string pcodigo)
         cout<<" Lista vacia..!";
 }
 
+void costos(Tlista2 &lista2,string pcodigo,float&prenta,float&pventa)
+{
+    Tlista2 q;
+    q = lista2;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,pcodigo.c_str());
+    if(lista2!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_pcodigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+				prenta=q->_precior;
+				pventa=q->_preciov;
+				return;
+            }
+            q = q->sgte;
+        }
+    }
+}
+
+void gettitulo(Tlista2 &lista2,string pcodigo)
+{
+	Tlista2 q;
+    q = lista2;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,pcodigo.c_str());
+    if(lista2!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_pcodigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+				cout<<"Titulo: "<<q->_titulo;
+				return;
+            }
+            q = q->sgte;
+        }
+    }
+}
+
 void eliminarPelicula(Tlista2 &lista2,string pcodigo)
 {
     Tlista2 q, ant;
@@ -742,8 +785,8 @@ string setdirector(){
 
 int main(){
 	setlocale(LC_ALL, "");
-	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i,_check;
-	float _precior,_preciov;
+	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i,_check,con;
+	float _precior=0,_preciov=0;
 	Tlista lista = NULL;
 	Tlista1 lista1 = NULL;
 	Tlista2 lista2 = NULL;
@@ -964,7 +1007,6 @@ int main(){
 						cin>>opc4;
 						switch(opc4){
 							case 1:
-								cout<<endl<<"	Renta"<<endl;
 								cout<<"Ingresa el codigo del empleado"<<endl;
 								_empleado=setcodigo();
 								_check=check1(lista1, _empleado);
@@ -980,7 +1022,7 @@ int main(){
 								_check=check2(lista2, _pelicula);
 								if(_check==1)
 								break;
-								cout<<"smn";
+								costos(lista2,_pelicula,_preciov,_precior);
 								break;
 
 								break;
@@ -1002,8 +1044,18 @@ int main(){
 								_check=check2(lista2, _pelicula);
 								if(_check==1)
 								break;
-								cout<<"smn";
+								costos(lista2,_pelicula,_preciov,_precior);
+								gettitulo(lista2,_pelicula);
+								cout<<"Pagar: $"<<_preciov<<endl;
+								cout<<"1.-Confirmar "<<endl;
+								cout<<"2.-Cancelar  "<<endl;
+								cin>>con;
+								if(con==1){
+								cout<<"prueba";
+								}
+								if(con=2)
 								break;
+								
 						}
 					}while(opc4=!3);
 
