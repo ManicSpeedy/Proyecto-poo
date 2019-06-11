@@ -181,37 +181,6 @@ void modificarCliente(Tlista &lista,string codigo)
 }
 
 
-void eliminarPelicula(Tlista &lista,string codigo)
-{
-    Tlista q, ant;
-    q = lista;
-    char palabra1[50],palabra2[50];
-	strcpy(palabra2,codigo.c_str());
-    
-    if(lista!=NULL)
-    {
-        while(q!=NULL)
-        {
-            strcpy(palabra1,q->_codigo.c_str());
-			if(strcmp(palabra1,palabra2)==0)
-            {
-                if(q==lista)
-                    lista = lista->sgte;
-                else
-                    ant->sgte = q->sgte;
-            
-                delete(q);
-                return;
-            }
-            ant = q;
-            q = q->sgte;
-        }
-    }
-    else
-        cout<<" Lista vacia..!";
-}
-
-
 //----------------------------------------------------------------
 typedef struct nodo1 *Tlista1;
 
@@ -433,6 +402,37 @@ void modificarPelicula(Tlista2 &lista2, string pcodigo)
         cout<<" Lista vacia..!";
 }
 
+void eliminarPelicula(Tlista2 &lista2,string pcodigo)
+{
+    Tlista2 q, ant;
+    q = lista2;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,pcodigo.c_str());
+    
+    if(lista2!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_pcodigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+                if(q==lista2)
+                    lista2 = lista2->sgte;
+                else
+                    ant->sgte = q->sgte;
+            
+                delete(q);
+                return;
+            }
+            ant = q;
+            q = q->sgte;
+        }
+    }
+    else
+        cout<<" Lista vacia..!";
+}
+
+
 class persona{ 
 	private: 
 		string nombre; 
@@ -588,7 +588,7 @@ string setcodigo(){
 string setcodigom(){
 	string _codigo;
 	cin.ignore();
-	cout<<endl<<"Introduce codigo de la pelicula a modificar: ";
+	cout<<endl<<endl<<"Introduce codigo de la pelicula a modificar: ";
 	getline(cin,_codigo);
 	return _codigo;
 }
@@ -646,6 +646,7 @@ float setpreciov(){
 	cout<<"\n";
 	cout<<"Introduce precio de venta: ";
 	cin>>_preciov;
+	cout<<endl;
 	return _preciov;
 }
 
@@ -737,7 +738,7 @@ int main(){
 										case '1':
 											cout<<endl<<"	Introduce el codigo del cliente"<<endl;
 											_codigo=setcodigo();
-							                modificarCliente(lista, _codigo);
+							          		modificarCliente(lista, _codigo);
 											break;
 										case '2':
 											cout<<endl<<"	Introduce el codigo del cliente"<<endl;
@@ -794,6 +795,7 @@ int main(){
 								_titulo=settitulo();
 				                buscarElementonombre2(lista2, _titulo);
 								break;
+						
 							case'3':
 								cout<<endl<<"	Modificar"<<endl;
 								do{
@@ -803,17 +805,19 @@ int main(){
 									cout<<"Opcion: ";
 									opc3=getche();
 									switch(opc3){
+									
 										case '1':
 											_codigo=setcodigom();
 							                modificarPelicula(lista2, _codigo);
 											break;
+									
 										case '2':
-											cout<<endl<<"	Introduce el codigo de la pelicula a eliminar: "<<endl;
-											_codigo=setcodigo();
+											_codigo=setcodigom();
+											eliminarPelicula(lista2, _codigo);
 											break;
 										
 										case '3':
-											cout<<endl<<"	Saliste de modificar"<<endl;
+											cout<<endl<<endl<<"	Saliste de modificar"<<endl;
 											break;
 									}
 								}while(opc3!='3');
