@@ -11,8 +11,9 @@ using namespace std;
 typedef struct nodo *Tlista;
 
 struct nodo{
-   string _nombre,_codigo,_RFC,_domicilio,_IFE;
-   int _telefono;
+   string _nombre,_codigo,_RFC,_domicilio,_IFE,_director,_genero;
+   int _telefono,_cantidad;
+   float _precior, _preciov;
    struct nodo *sgte;
 };
 
@@ -101,7 +102,7 @@ void buscarElementonombre(Tlista lista,string nombre)
         cout<<"\n\n Nombre no encontrado..!"<< endl;
 }
 
-void eliminarElemento(Tlista &lista,string codigo)
+void eliminarCliente(Tlista &lista,string codigo)
 {
     Tlista q, ant;
     q = lista;
@@ -131,7 +132,7 @@ void eliminarElemento(Tlista &lista,string codigo)
         cout<<" Lista vacia..!";
 }
 
-void modificarElemento(Tlista &lista,string codigo)
+void modificarCliente(Tlista &lista,string codigo)
 {
     Tlista q;
     q = lista;
@@ -178,6 +179,38 @@ void modificarElemento(Tlista &lista,string codigo)
     else
         cout<<" Lista vacia..!";
 }
+
+
+void eliminarPelicula(Tlista &lista,string codigo)
+{
+    Tlista q, ant;
+    q = lista;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,codigo.c_str());
+    
+    if(lista!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_codigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+                if(q==lista)
+                    lista = lista->sgte;
+                else
+                    ant->sgte = q->sgte;
+            
+                delete(q);
+                return;
+            }
+            ant = q;
+            q = q->sgte;
+        }
+    }
+    else
+        cout<<" Lista vacia..!";
+}
+
 
 //----------------------------------------------------------------
 typedef struct nodo1 *Tlista1;
@@ -278,7 +311,7 @@ void buscarElementonombre1(Tlista1 lista1,string nombre)
 typedef struct nodo2 *Tlista2;
 
 struct nodo2{
-   string _titulo,_pcodigo,_director,_genero;
+   string _titulo,_pcodigo,_director,_genero, _codigo;
    int _cantidad;
    float _precior, _preciov;
    struct nodo2 *sgte;
@@ -345,6 +378,60 @@ void buscarElementonombre2(Tlista2 lista2,string titulo)
         cout<<"\n\n Titulo no encontrado..!"<< endl;
 }
 
+void modificarPelicula(Tlista2 &lista2, string pcodigo)
+{
+    Tlista2 q;
+    q = lista2;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,pcodigo.c_str());
+    string titulo,codigo,director,genero;
+    int cantidad;
+    float precior, preciov;
+    if(lista2!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_pcodigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+				cin.ignore();
+				cout<<"Introduce Titulo: ";
+				getline(cin,titulo);
+				q->_titulo = titulo;
+				cin.ignore();
+				cout<<"Introduce Codigo: ";
+				getline(cin,codigo);
+				q->_pcodigo = codigo;
+				cin.ignore();
+				cout<<"Introduce Director: ";
+				getline(cin,director);
+				q->_director = director;
+				cin.ignore();
+				cout<<"Introduce Genero: ";
+				getline(cin,genero);
+				q->_genero = genero;
+				cin.ignore();
+				cout<<"Introduce cantidad: ";
+				cin>>cantidad;
+				cout<<endl;
+				q->_cantidad = cantidad;
+				cin.ignore();
+				cout<<"Introduce precio renta: ";
+				cin>>precior;
+				cout<<endl;
+				q->_precior = precior; 
+				cout<<"Introduce precio venta: ";
+				cin>>preciov;
+				cout<<endl;
+				q->_preciov = preciov;
+				return;
+            }
+            q = q->sgte;
+        }
+    }
+    else
+        cout<<" Lista vacia..!";
+}
 
 class persona{ 
 	private: 
@@ -498,6 +585,14 @@ string setcodigo(){
 	return _codigo;
 }
 
+string setcodigom(){
+	string _codigo;
+	cin.ignore();
+	cout<<endl<<"Introduce codigo de la pelicula a modificar: ";
+	getline(cin,_codigo);
+	return _codigo;
+}
+
 string setIFE(){
 	string _IFE;
 	cin.ignore();
@@ -550,7 +645,6 @@ float setpreciov(){
 	int _preciov;
 	cout<<"\n";
 	cout<<"Introduce precio de venta: ";
-	cout<<"\n";
 	cin>>_preciov;
 	return _preciov;
 }
@@ -637,19 +731,21 @@ int main(){
 									cout<<endl<<"1.Modificar"<<endl;
 									cout<<"2.Eliminar"<<endl;
 									cout<<"3.Salir"<<endl;
+									cout<<"Opcion: ";
 									opc2=getche();
 									switch(opc2){
 										case '1':
 											cout<<endl<<"	Introduce el codigo del cliente"<<endl;
 											_codigo=setcodigo();
-							                modificarElemento(lista, _codigo);
+							                modificarCliente(lista, _codigo);
 											break;
-											case '2':
+										case '2':
 											cout<<endl<<"	Introduce el codigo del cliente"<<endl;
 											_codigo=setcodigo();
-							                eliminarElemento(lista, _codigo);
+						            		eliminarCliente(lista, _codigo);
 											break;
-											case '3':
+										
+										case '3':
 											cout<<endl<<"	Saliste de modificar"<<endl;
 											break;
 									}
@@ -700,6 +796,28 @@ int main(){
 								break;
 							case'3':
 								cout<<endl<<"	Modificar"<<endl;
+								do{
+									cout<<endl<<"1.Modificar"<<endl;
+									cout<<"2.Eliminar"<<endl;
+									cout<<"3.Salir"<<endl;
+									cout<<"Opcion: ";
+									opc3=getche();
+									switch(opc3){
+										case '1':
+											_codigo=setcodigom();
+							                modificarPelicula(lista2, _codigo);
+											break;
+										case '2':
+											cout<<endl<<"	Introduce el codigo de la pelicula a eliminar: "<<endl;
+											_codigo=setcodigo();
+											break;
+										
+										case '3':
+											cout<<endl<<"	Saliste de modificar"<<endl;
+											break;
+									}
+								}while(opc3!='3');
+								
 								break;
 							case'4':
 								cout<<endl<<"	Reporte de peliculas rentadas"<<endl;
