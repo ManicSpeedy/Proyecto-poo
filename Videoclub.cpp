@@ -189,7 +189,7 @@ void modificarCliente(Tlista &lista,string codigo)
 				cin.ignore();
 				cout<<"Introduce Codigo: ";
 				getline(cin,pcodigo);
-				q->_codigo = codigo;
+				q->_codigo = pcodigo;
 				cin.ignore();
 				cout<<"Introduce RFC: ";
 				getline(cin,RFC);
@@ -526,7 +526,7 @@ void gettitulo(Tlista2 &lista2,string pcodigo)
             strcpy(palabra1,q->_pcodigo.c_str());
 			if(strcmp(palabra1,palabra2)==0)
             {
-				cout<<"Titulo: "<<q->_titulo;
+				cout<<endl<<endl<<"Titulo: "<<q->_titulo;
 				return;
             }
             q = q->sgte;
@@ -955,8 +955,8 @@ string setdirector(){
 
 int main(){
 	setlocale(LC_ALL, "");
-	int opc, opc1, opc2, opc3, opc4,_telefono,_cantidad,i,_check,con;
-	float _precior=0,_preciov=0;
+	int opc, opc1, opc2, opc3, opc4,opc5,_telefono,_cantidad,i,_check,con;
+	float _precior=0,_preciov=0,pago=0;
 	Tlista lista = NULL;
 	Tlista1 lista1 = NULL;
 	Tlista2 lista2 = NULL;
@@ -1175,7 +1175,8 @@ int main(){
 				
 					break;
 				case'4':
-					do{
+						pago=0;
+						do{
 						cout<<endl<<"1.Renta"<<endl;
 						cout<<"2.Venta"<<endl;
 						cout<<"3.Salir"<<endl;
@@ -1200,7 +1201,9 @@ int main(){
 								break;
 								costos(lista2,_pelicula,_preciov,_precior);
 								gettitulo(lista2,_pelicula);
-								cout<<"\nPagar: $"<<_preciov<<endl;
+								cout<<"\nCosto: $"<<_precior<<endl;
+								pago=pago+_precior;
+								cout<<"\nPago total: $"<<pago<<endl<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
 								cout<<endl<<"Opcion: ";
@@ -1231,7 +1234,9 @@ int main(){
 								break;
 								costos(lista2,_pelicula,_preciov,_precior);
 								gettitulo(lista2,_pelicula);
-								cout<<"\nPagar: $"<<_preciov<<endl;
+								cout<<"\nCosto: $"<<_preciov<<endl;
+								pago=pago+_preciov;
+								cout<<"\nPago total: $"<<pago<<endl<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
 								cout<<endl<<"Opcion: ";
@@ -1243,8 +1248,14 @@ int main(){
 								if(con=2)
 								break;
 								
+						
 						}
-					}while(opc4=!3);
+						cout<<endl<<"Desea hacer otra compra o renta?"<<endl;
+						cout<<endl<<"1.-Si";
+						cout<<endl<<"2.-No";
+						cout<<endl<<"Opcion: ";
+						cin>>(opc5);
+					}while(opc5==1);
 
 					
 					break;
