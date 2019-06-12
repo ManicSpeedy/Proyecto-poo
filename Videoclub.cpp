@@ -211,8 +211,7 @@ typedef struct nodo1 *Tlista1;
 
 struct nodo1{
    string _nombre,_codigo,_RFC,_domicilio;
-   int _comision;
-   float _pago;
+   float _pago, _comision;
    struct nodo1 *sgte;
 };
 
@@ -313,8 +312,8 @@ void buscarElementonombre1(Tlista1 lista1,string nombre)
         cout<<"    Codigo: "<<q->_codigo<<endl;
         cout<<"    RFC: "<<q->_RFC<<endl;
         cout<<"    Domicilio: "<<q->_domicilio<<endl;
-        cout<<" Pago"<<q->_pago<<endl;
-        cout<<"Pago generado por comisiones"<<q->_comision<<endl<<endl;
+        cout<<"    Pago: $"<<q->_pago<<endl;
+        cout<<"    Pago generado por comisiones: $"<<q->_comision<<endl<<endl;
     	band = 1;
         }
         q = q->sgte;
@@ -693,7 +692,7 @@ void comision(Tlista1 &lista1,string codigo,float comision)
 			if(strcmp(palabra1,palabra2)==0)
             {
 				q->_pago=q->_pago+(comision*0.03);
-				q->_comision=q->_comision+1;
+				q->_comision=q->_comision+(comision*0.03);
 				return;
             }
             q = q->sgte;
