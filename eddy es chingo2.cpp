@@ -692,7 +692,7 @@ void comision(Tlista1 &lista1,string codigo,float comision)
             strcpy(palabra1,q->_codigo.c_str());
 			if(strcmp(palabra1,palabra2)==0)
             {
-				q->_pago=q->_pago+(comision*0.3);
+				q->_pago=q->_pago+(comision*0.03);
 				return;
             }
             q = q->sgte;
