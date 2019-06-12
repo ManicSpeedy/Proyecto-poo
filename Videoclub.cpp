@@ -28,7 +28,7 @@ int check(Tlista lista,string codigo)
     	strcpy(palabra1,q->_codigo.c_str());
         if(strcmp(palabra1,palabra2) == 0)
         {
-        if(q->_cantidad>3){
+        if(q->_cantidad>=3){
         	cout<<endl<<"El usuario tiene rentada mas de 3 peliculas";
         	return check;
 		}
@@ -575,12 +575,14 @@ struct nodo3{
    struct nodo3 *sgte;
 };
 
-void rentaPelicula(Tlista2 &lista2,Tlista3 &lista3, string pcodigo)
+void rentaPelicula(Tlista2 &lista2,Tlista3 &lista3,Tlista &lista,string pcodigo)
 {
     Tlista2 q;
     q = lista2;
     Tlista3 p;
     p = lista3;
+    Tlista w;
+    w = lista;
     char palabra1[50],palabra2[50];
 	strcpy(palabra2,pcodigo.c_str());
     int cantidad;
@@ -592,7 +594,7 @@ void rentaPelicula(Tlista2 &lista2,Tlista3 &lista3, string pcodigo)
             strcpy(palabra1,q->_pcodigo.c_str());
 			if(strcmp(palabra1,palabra2)==0)
             {
-
+				w->_cantidad = w->_cantidad+1;
 				q->_cantidad = q->_cantidad-1;
 				p = new(struct nodo3);
 				p->_titulo = q->_titulo;
@@ -965,7 +967,7 @@ int main(){
 	cin>>contra;
 	if(contra == "Videoclub"){
 		do{
-			cout<<endl<<"1.CLIENTES"<<endl;
+			cout<<endl<<endl<<"1.CLIENTES"<<endl;
 			cout<<"2.PELICULAS"<<endl;
 			cout<<"3.EMPLEADO"<<endl;
 			cout<<"4.REALIZAR RENTA O VENTA"<<endl;
@@ -1204,7 +1206,7 @@ int main(){
 								cout<<endl<<"Opcion: ";
 								cin>>con;
 								if(con==1){
-								rentaPelicula(lista2,lista3,_pelicula);
+								rentaPelicula(lista2,lista3,lista,_pelicula);
 								comision(lista1,_empleado,_precior);
 								}
 								if(con=2)
