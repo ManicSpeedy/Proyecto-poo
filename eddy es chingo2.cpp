@@ -343,7 +343,7 @@ int check2(Tlista2 lista2,string codigo)
     strcpy(palabra2,codigo.c_str());
     while(q!=NULL)
     {
-    	strcpy(palabra1,q->_codigo.c_str());
+    	strcpy(palabra1,q->_pcodigo.c_str());
         if(strcmp(palabra1,palabra2) == 0)
         {
         check=0;
