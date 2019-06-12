@@ -693,6 +693,7 @@ void comision(Tlista1 &lista1,string codigo,float comision)
 			if(strcmp(palabra1,palabra2)==0)
             {
 				q->_pago=q->_pago+(comision*0.03);
+				q->_comision=q->_comision+1;
 				return;
             }
             q = q->sgte;
