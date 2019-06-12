@@ -28,8 +28,14 @@ int check(Tlista lista,string codigo)
     	strcpy(palabra1,q->_codigo.c_str());
         if(strcmp(palabra1,palabra2) == 0)
         {
+        if(q->_cantidad>3){
+        	cout<<endl<<"El usuario tiene rentada mas de 3 peliculas";
+        	return check;
+		}
+		else{
         check=0;
     	band = 1;
+    	}
         }
         q = q->sgte;
         i++;
@@ -50,6 +56,7 @@ void insertarInicio(Tlista &lista,string nombre,string codigo,string RFC,string 
   q->_domicilio = domicilio;
   q->_IFE = IFE;
   q->_telefono = telefono;
+  q->_cantidad = 0;
   q->sgte = lista;
   lista = q;
 }
@@ -65,7 +72,8 @@ void reportarLista(Tlista lista)
         cout<<"    Telefono: "<<lista->_telefono<<endl;
         cout<<"    RFC: "<<lista->_RFC<<endl;
         cout<<"    Domicilio: "<<lista->_domicilio<<endl;
-        cout<<"    IFE: "<<lista->_IFE<<endl<<endl;
+        cout<<"    IFE: "<<lista->_IFE<<endl;
+        cout<<"    Pelis rentadas: "<<lista->_cantidad<<endl<<endl;
         lista = lista->sgte;
         i++;
     }
@@ -87,7 +95,8 @@ void buscarElementocodigo(Tlista lista,string codigo)
         cout<<"    Telefono: "<<q->_telefono<<endl;
         cout<<"    RFC: "<<q->_RFC<<endl;
         cout<<"    Domicilio: "<<q->_domicilio<<endl;
-        cout<<"    IFE: "<<q->_IFE<<endl<<endl;
+        cout<<"    IFE: "<<q->_IFE<<endl;
+        cout<<"    Pelis rentadas: "<<q->_cantidad<<endl<<endl;
     	band = 1;
         }
         q = q->sgte;
@@ -116,7 +125,8 @@ void buscarElementonombre(Tlista lista,string nombre)
         cout<<"    Telefono: "<<q->_telefono<<endl;
         cout<<"    RFC: "<<q->_RFC<<endl;
         cout<<"    Domicilio: "<<q->_domicilio<<endl;
-        cout<<"    IFE: "<<q->_IFE<<endl<<endl;
+        cout<<"    IFE: "<<q->_IFE<<endl;
+        cout<<"    Pelis rentadas: "<<q->_cantidad<<endl<<endl;
     	band = 1;
         }
         q = q->sgte;
@@ -247,7 +257,7 @@ void insertarInicio1(Tlista1 &lista1,string nombre,string codigo,string RFC,stri
   q->_codigo = codigo;
   q->_RFC = RFC;
   q->_domicilio = domicilio;
-  q->_pago = 25000;
+  q->_pago = 25000.00;
   q->_comision=0;
   q->sgte = lista1;
   lista1 = q;
@@ -346,8 +356,14 @@ int check2(Tlista2 lista2,string codigo)
     	strcpy(palabra1,q->_pcodigo.c_str());
         if(strcmp(palabra1,palabra2) == 0)
         {
+        if(q->_cantidad<=0){
+        	cout<<endl<<"Pelicula no disponible";
+        	return check;
+		}
+		else{
         check=0;
     	band = 1;
+    	}
         }
         q = q->sgte;
         i++;
@@ -484,7 +500,6 @@ void costos(Tlista2 &lista2,string pcodigo,float&prenta,float&pventa)
     {
         while(q!=NULL)
         {
-        	if(q->_cantidad>0){
             strcpy(palabra1,q->_pcodigo.c_str());
 			if(strcmp(palabra1,palabra2)==0)
             {
@@ -492,9 +507,6 @@ void costos(Tlista2 &lista2,string pcodigo,float&prenta,float&pventa)
 				pventa=q->_preciov;
 				return;
             }
-        	}
-        	else
-        	cout<<"Pelicula agotada";
             q = q->sgte;
         }
     }
@@ -1179,14 +1191,14 @@ int main(){
 								_check=check(lista, _cliente);
 								if(_check==1)
 								break;
-								cout<<"Ingresa el codigo de la pelicula"<<endl;
+								cout<<"Ingresa el codigo de la pelicula";
 								_pelicula=setcodigo();
 								_check=check2(lista2, _pelicula);
 								if(_check==1)
 								break;
 								costos(lista2,_pelicula,_preciov,_precior);
 								gettitulo(lista2,_pelicula);
-								cout<<"Pagar: $"<<_preciov<<endl;
+								cout<<"\nPagar: $"<<_preciov<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
 								cout<<endl<<"Opcion: ";
@@ -1196,9 +1208,6 @@ int main(){
 								comision(lista1,_empleado,_precior);
 								}
 								if(con=2)
-								break;
-								break;
-
 								break;
 							
 							case 2:
@@ -1213,14 +1222,14 @@ int main(){
 								_check=check(lista, _cliente);
 								if(_check==1)
 								break;
-								cout<<"Ingresa el codigo de la pelicula"<<endl;
+								cout<<"Ingresa el codigo de la pelicula";
 								_pelicula=setcodigo();
 								_check=check2(lista2, _pelicula);
 								if(_check==1)
 								break;
 								costos(lista2,_pelicula,_preciov,_precior);
 								gettitulo(lista2,_pelicula);
-								cout<<"Pagar: $"<<_preciov<<endl;
+								cout<<"\nPagar: $"<<_preciov<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
 								cout<<endl<<"Opcion: ";
