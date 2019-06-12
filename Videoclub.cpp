@@ -209,11 +209,12 @@ void modificarCliente(Tlista &lista,string codigo)
 //----------------------------------------------------------------
 typedef struct nodo1 *Tlista1;
 
-struct nodo1{
-   string _nombre,_codigo,_RFC,_domicilio;
-   float _pago, _comision;
-   struct nodo1 *sgte;
-};
+struct nodo1{ 
+   string _nombre,_codigo,_RFC,_domicilio; 
+   float _pago, _comision; 
+   struct nodo1 *sgte; 
+}; 
+ 
 
 int check1(Tlista1 lista1,string codigo)
 {
@@ -262,8 +263,8 @@ void reportarLista1(Tlista1 lista1)
         cout<<"    Codigo: "<<lista1->_codigo<<endl;
         cout<<"    RFC: "<<lista1->_RFC<<endl;
         cout<<"    Domicilio: "<<lista1->_domicilio<<endl;
-        cout<<" Pago"<<lista1->_pago<<endl;
-        cout<<"Pago generado por comisiones"<<lista1->_comision<<endl<<endl;
+        cout<<"    Pago: $"<<lista1->_pago<<endl;
+        cout<<"    Pago generado por comisiones: $"<<lista1->_comision<<endl<<endl;
         lista1 = lista1->sgte;
         i++;
     }
@@ -284,8 +285,8 @@ void buscarElementocodigo1(Tlista1 lista1,string codigo)
         cout<<"    Codigo: "<<q->_codigo<<endl;
         cout<<"    RFC: "<<q->_RFC<<endl;
         cout<<"    Domicilio: "<<q->_domicilio<<endl;
-        cout<<" Pago"<<q->_pago<<endl;
-        cout<<"Pago generado por comisiones"<<q->_comision<<endl<<endl;
+        cout<<"    Pago: $"<<q->_pago<<endl;
+        cout<<"    Pago generado por comisiones: $"<<q->_comision<<endl<<endl;
     	band = 1;
         }
         q = q->sgte;
@@ -309,14 +310,14 @@ void buscarElementonombre1(Tlista1 lista1,string nombre)
 		if(strcmp(palabra1,palabra2)==0)
         {
         cout<<"    Nombre: " <<q->_nombre<<endl;
-        cout<<"    Codigo: "<<q->_codigo<<endl;
-        cout<<"    RFC: "<<q->_RFC<<endl;
-        cout<<"    Domicilio: "<<q->_domicilio<<endl;
-        cout<<"    Pago: $"<<q->_pago<<endl;
-        cout<<"    Pago generado por comisiones: $"<<q->_comision<<endl<<endl;
-    	band = 1;
-        }
-        q = q->sgte;
+        cout<<"    Codigo: "<<q->_codigo<<endl; 
+        cout<<"    RFC: "<<q->_RFC<<endl; 
+        cout<<"    Domicilio: "<<q->_domicilio<<endl; 
+        cout<<"    Pago: $"<<q->_pago<<endl; 
+        cout<<"    Pago generado por comisiones: $"<<q->_comision<<endl<<endl; 
+    	band = 1; 
+        } 
+        q = q->sgte; 
         i++;
     }
 
@@ -689,13 +690,13 @@ void comision(Tlista1 &lista1,string codigo,float comision)
         while(q!=NULL)
         {
             strcpy(palabra1,q->_codigo.c_str());
-			if(strcmp(palabra1,palabra2)==0)
-            {
-				q->_pago=q->_pago+(comision*0.03);
-				q->_comision=q->_comision+(comision*0.03);
-				return;
-            }
-            q = q->sgte;
+			if(strcmp(palabra1,palabra2)==0) 
+            { 
+				q->_pago=q->_pago+(comision*0.03); 
+				q->_comision=q->_comision+(comision*0.03); 
+				return; 
+            } 
+            q = q->sgte; 
         }
     }
     else
@@ -1188,6 +1189,7 @@ int main(){
 								cout<<"Pagar: $"<<_preciov<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
+								cout<<endl<<"Opcion: ";
 								cin>>con;
 								if(con==1){
 								rentaPelicula(lista2,lista3,_pelicula);
@@ -1221,6 +1223,7 @@ int main(){
 								cout<<"Pagar: $"<<_preciov<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
+								cout<<endl<<"Opcion: ";
 								cin>>con;
 								if(con==1){
 								ventaPelicula(lista2,lista4,_pelicula);
