@@ -484,6 +484,7 @@ void costos(Tlista2 &lista2,string pcodigo,float&prenta,float&pventa)
     {
         while(q!=NULL)
         {
+        	if(q->_cantidad>0){
             strcpy(palabra1,q->_pcodigo.c_str());
 			if(strcmp(palabra1,palabra2)==0)
             {
@@ -491,10 +492,14 @@ void costos(Tlista2 &lista2,string pcodigo,float&prenta,float&pventa)
 				pventa=q->_preciov;
 				return;
             }
+        	}
+        	else
+        	cout<<"Pelicula agotada";
             q = q->sgte;
         }
     }
 }
+
 
 void gettitulo(Tlista2 &lista2,string pcodigo)
 {
@@ -540,6 +545,156 @@ void eliminarPelicula(Tlista2 &lista2,string pcodigo)
                 return;
             }
             ant = q;
+            q = q->sgte;
+        }
+    }
+    else
+        cout<<" Lista vacia..!";
+}
+
+//---------------------------------------------------------------------------
+
+typedef struct nodo3 *Tlista3;
+
+struct nodo3{
+   string _titulo,_pcodigo,_director,_genero, _codigo;
+   int _cantidad;
+   float _precior, _preciov;
+   struct nodo3 *sgte;
+};
+
+void rentaPelicula(Tlista2 &lista2,Tlista3 &lista3, string pcodigo)
+{
+    Tlista2 q;
+    q = lista2;
+    Tlista3 p;
+    p = lista3;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,pcodigo.c_str());
+    int cantidad;
+    float precior, preciov;
+    if(lista2!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_pcodigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+
+				q->_cantidad = q->_cantidad-1;
+				p = new(struct nodo3);
+				p->_titulo = q->_titulo;
+				p->_pcodigo = q->_pcodigo;
+				p->_director = q->_director;
+				p->_genero = q->_genero;
+				p->_precior = q->_precior;
+				p->_preciov = q->_preciov;
+				p->sgte = lista3;
+				lista3 = p;
+				return;
+            }
+            q = q->sgte;
+        }
+    }
+}
+
+void reportarLista3(Tlista3 lista3)
+{
+    int i = 0;
+    
+    while(lista3 != NULL)
+    {
+        cout <<' '<< i+1 <<")Titulo: " << lista3->_titulo<<endl;
+        cout<<"    Codigo: "<<lista3->_pcodigo<<endl;
+        cout<<"    Director: "<<lista3->_director<<endl;
+        cout<<"    Genero: "<<lista3->_genero<<endl;
+        cout<<"    Precio de renta: $"<<lista3->_precior<<endl;
+ 		cout<<"    Precio de venta: $"<<lista3->_preciov<<endl<<endl;
+        lista3 = lista3->sgte;
+        i++;
+    }
+}
+
+//---------------------------------------------------------------------------
+
+typedef struct nodo4 *Tlista4;
+
+struct nodo4{
+   string _titulo,_pcodigo,_director,_genero, _codigo;
+   int _cantidad;
+   float _precior, _preciov;
+   struct nodo4 *sgte;
+};
+
+void ventaPelicula(Tlista2 &lista2,Tlista4 &lista4, string pcodigo)
+{
+    Tlista2 q;
+    q = lista2;
+    Tlista4 p;
+    p = lista4;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,pcodigo.c_str());
+    int cantidad;
+    float precior, preciov;
+    if(lista2!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_pcodigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+
+				q->_cantidad = q->_cantidad-1;
+				p = new(struct nodo4);
+				p->_titulo = q->_titulo;
+				p->_pcodigo = q->_pcodigo;
+				p->_director = q->_director;
+				p->_genero = q->_genero;
+				p->_precior = q->_precior;
+				p->_preciov = q->_preciov;
+				p->sgte = lista4;
+				lista4 = p;
+				return;
+            }
+            q = q->sgte;
+        }
+    }
+}
+
+void reportarLista4(Tlista4 lista4)
+{
+    int i = 0;
+    
+    while(lista4 != NULL)
+    {
+        cout <<' '<< i+1 <<")Titulo: " << lista4->_titulo<<endl;
+        cout<<"    Codigo: "<<lista4->_pcodigo<<endl;
+        cout<<"    Director: "<<lista4->_director<<endl;
+        cout<<"    Genero: "<<lista4->_genero<<endl;
+        cout<<"    Precio de renta: $"<<lista4->_precior<<endl;
+ 		cout<<"    Precio de venta: $"<<lista4->_preciov<<endl<<endl;
+        lista4 = lista4->sgte;
+        i++;
+    }
+}
+
+void comision(Tlista1 &lista1,string codigo,float comision)
+{
+    Tlista1 q;
+    q = lista1;
+    char palabra1[50],palabra2[50];
+	strcpy(palabra2,codigo.c_str());
+    int telefono;
+    if(lista1!=NULL)
+    {
+        while(q!=NULL)
+        {
+            strcpy(palabra1,q->_codigo.c_str());
+			if(strcmp(palabra1,palabra2)==0)
+            {
+				q->_pago=q->_pago+(comision*0.3);
+				return;
+            }
             q = q->sgte;
         }
     }
@@ -790,6 +945,8 @@ int main(){
 	Tlista lista = NULL;
 	Tlista1 lista1 = NULL;
 	Tlista2 lista2 = NULL;
+	Tlista3 lista3 = NULL;
+	Tlista4 lista4 = NULL;
 	string contra="",_nombre,_codigo,_RFC,_domicilio,_IFE,_titulo,_pcodigo,_genero,_director,_empleado,_cliente,_pelicula;
 	cout<<"Introduce la contraseña: ";
 	cin>>contra;
@@ -939,9 +1096,13 @@ int main(){
 								break;
 							case'4':
 								cout<<endl<<"	Reporte de peliculas rentadas"<<endl;
+								cout<< "\n\n MOSTRANDO LISTA\n\n";
+                				reportarLista3(lista3);
 								break;
 							case'5':
 								cout<<endl<<"	Reporte de peliculas vendidas"<<endl;
+								cout<< "\n\n MOSTRANDO LISTA\n\n";
+                				reportarLista4(lista4);
 								break;
 							case'6':
 								cout<<endl<<"	Reporte de peliculas disponibles"<<endl;
@@ -1023,6 +1184,17 @@ int main(){
 								if(_check==1)
 								break;
 								costos(lista2,_pelicula,_preciov,_precior);
+								gettitulo(lista2,_pelicula);
+								cout<<"Pagar: $"<<_preciov<<endl;
+								cout<<"1.-Confirmar "<<endl;
+								cout<<"2.-Cancelar  "<<endl;
+								cin>>con;
+								if(con==1){
+								rentaPelicula(lista2,lista3,_pelicula);
+								comision(lista1,_empleado,_precior);
+								}
+								if(con=2)
+								break;
 								break;
 
 								break;
@@ -1051,7 +1223,8 @@ int main(){
 								cout<<"2.-Cancelar  "<<endl;
 								cin>>con;
 								if(con==1){
-								cout<<"prueba";
+								ventaPelicula(lista2,lista4,_pelicula);
+								comision(lista1,_empleado,_preciov);
 								}
 								if(con=2)
 								break;
