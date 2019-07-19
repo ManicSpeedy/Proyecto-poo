@@ -8,13 +8,14 @@
 
 using namespace std;
 
-typedef struct nodo *Tlista;
+typedef class nodo *Tlista;
 
-struct nodo{
+class nodo{
+	public:
    string _nombre,_codigo,_RFC,_domicilio,_IFE,_director,_genero;
    int _telefono,_cantidad;
    float _precior, _preciov;
-   struct nodo *sgte;
+   class nodo *sgte;
 };
 
 int check(Tlista lista,string codigo)
@@ -49,7 +50,7 @@ int check(Tlista lista,string codigo)
 void insertarInicio(Tlista &lista,string nombre,string codigo,string RFC,string domicilio,string IFE,int telefono)
 {
     Tlista q; 
-  q = new(struct nodo);
+  q = new(class nodo);
   q->_nombre = nombre;
   q->_codigo = codigo;
   q->_RFC = RFC;
@@ -217,12 +218,13 @@ void modificarCliente(Tlista &lista,string codigo)
 
 
 //----------------------------------------------------------------
-typedef struct nodo1 *Tlista1;
+typedef class nodo1 *Tlista1;
 
-struct nodo1{ 
+class nodo1{ 
+public:
    string _nombre,_codigo,_RFC,_domicilio; 
    float _pago, _comision; 
-   struct nodo1 *sgte; 
+   class nodo1 *sgte; 
 }; 
  
 
@@ -252,7 +254,7 @@ int check1(Tlista1 lista1,string codigo)
 void insertarInicio1(Tlista1 &lista1,string nombre,string codigo,string RFC,string domicilio)
 {
     Tlista1 q; 
-  q = new(struct nodo1);
+  q = new(class nodo1);
   q->_nombre = nombre;
   q->_codigo = codigo;
   q->_RFC = RFC;
@@ -336,13 +338,14 @@ void buscarElementonombre1(Tlista1 lista1,string nombre)
 }
 
 //---------------------------------------------------------------------
-typedef struct nodo2 *Tlista2;
+typedef class nodo2 *Tlista2;
 
-struct nodo2{
+class nodo2{
+	public:
    string _titulo,_pcodigo,_director,_genero, _codigo;
    int _cantidad;
    float _precior, _preciov;
-   struct nodo2 *sgte;
+   class nodo2 *sgte;
 };
 
 int check2(Tlista2 lista2,string codigo)
@@ -377,7 +380,7 @@ int check2(Tlista2 lista2,string codigo)
 void insertarInicio(Tlista2 &lista2,string titulo,string pcodigo,string director,string genero,int cantidad,float precior,float preciov)
 {
     Tlista2 q; 
-  q = new(struct nodo2);
+  q = new(class nodo2);
   q->_titulo = titulo;
   q->_pcodigo = pcodigo;
   q->_director = director;
@@ -479,7 +482,7 @@ void modificarPelicula(Tlista2 &lista2, string pcodigo)
 				q->_precior = precior; 
 				cout<<"Introduce precio venta: ";
 				cin>>preciov;
-				cout<<endl;ejfiw
+				cout<<endl;
 				q->_preciov = preciov;
 				return;
             }
@@ -566,13 +569,14 @@ void eliminarPelicula(Tlista2 &lista2,string pcodigo)
 
 //---------------------------------------------------------------------------
 
-typedef struct nodo3 *Tlista3;
+typedef class nodo3 *Tlista3;
 
-struct nodo3{
+class nodo3{
+	public:
    string _titulo,_pcodigo,_director,_genero, _codigo;
    int _cantidad;
    float _precior, _preciov;
-   struct nodo3 *sgte;
+   class nodo3 *sgte;
 };
 
 void rentaPelicula(Tlista2 &lista2,Tlista3 &lista3,Tlista &lista,string pcodigo)
@@ -596,7 +600,7 @@ void rentaPelicula(Tlista2 &lista2,Tlista3 &lista3,Tlista &lista,string pcodigo)
             {
 				w->_cantidad = w->_cantidad+1;
 				q->_cantidad = q->_cantidad-1;
-				p = new(struct nodo3);
+				p = new(class nodo3);
 				p->_titulo = q->_titulo;
 				p->_pcodigo = q->_pcodigo;
 				p->_director = q->_director;
@@ -631,13 +635,14 @@ void reportarLista3(Tlista3 lista3)
 
 //---------------------------------------------------------------------------
 
-typedef struct nodo4 *Tlista4;
+typedef class nodo4 *Tlista4;
 
-struct nodo4{
+class nodo4{
+	public:
    string _titulo,_pcodigo,_director,_genero, _codigo;
    int _cantidad;
    float _precior, _preciov;
-   struct nodo4 *sgte;
+   class nodo4 *sgte;
 };
 
 void ventaPelicula(Tlista2 &lista2,Tlista4 &lista4, string pcodigo)
@@ -659,7 +664,7 @@ void ventaPelicula(Tlista2 &lista2,Tlista4 &lista4, string pcodigo)
             {
 
 				q->_cantidad = q->_cantidad-1;
-				p = new(struct nodo4);
+				p = new(class nodo4);
 				p->_titulo = q->_titulo;
 				p->_pcodigo = q->_pcodigo;
 				p->_director = q->_director;
@@ -782,7 +787,7 @@ string director();
 string genero();
 
 
-persona::persona(string _nombre, string _codigo, string _RFC, string _domicilio){
+/*persona::persona(string _nombre, string _codigo, string _RFC, string _domicilio){
 	nombre=_nombre;
 	codigo=_codigo;
 	RFC=_RFC;
@@ -836,7 +841,7 @@ void pelicula::mostrarpelicula(){
 	cout<<"Precio de venta: $"<<preciov<<endl;
 	cout<<"Director: "<<director<<endl;
 	cout<<"Genero: "<<genero<<endl;
-}
+}*/
 
 
 string setRFC(){
@@ -1201,8 +1206,8 @@ int main(){
 								break;
 								costos(lista2,_pelicula,_preciov,_precior);
 								gettitulo(lista2,_pelicula);
-								cout<<"\nCosto: $"<<_precior<<endl;
-								pago=pago+_precior;
+								cout<<"\nCosto: $"<<_preciov<<endl;
+								pago=pago+_preciov;
 								cout<<"\nPago total: $"<<pago<<endl<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
@@ -1210,7 +1215,7 @@ int main(){
 								cin>>con;
 								if(con==1){
 								rentaPelicula(lista2,lista3,lista,_pelicula);
-								comision(lista1,_empleado,_precior);
+								comision(lista1,_empleado,_preciov);
 								}
 								if(con=2)
 								break;
@@ -1234,8 +1239,8 @@ int main(){
 								break;
 								costos(lista2,_pelicula,_preciov,_precior);
 								gettitulo(lista2,_pelicula);
-								cout<<"\nCosto: $"<<_preciov<<endl;
-								pago=pago+_preciov;
+								cout<<"\nCosto: $"<<_precior<<endl;
+								pago=pago+_precior;
 								cout<<"\nPago total: $"<<pago<<endl<<endl;
 								cout<<"1.-Confirmar "<<endl;
 								cout<<"2.-Cancelar  "<<endl;
@@ -1243,7 +1248,7 @@ int main(){
 								cin>>con;
 								if(con==1){
 								ventaPelicula(lista2,lista4,_pelicula);
-								comision(lista1,_empleado,_preciov);
+								comision(lista1,_empleado,_precior);
 								}
 								if(con=2)
 								break;
